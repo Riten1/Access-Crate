@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base{
+  html {
+    font-family: "Poppins", "san-serif";
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components{
+  .input {
+    @apply block w-full rounded-md border border-neutral-200 px-2 py-3 text-sm font-normal outline-none
+  }
+
+  .primary-btn{
+    @apply w-full rounded-full bg-core-primary px-3 py-3 text-base text-supporting-bg disabled:cursor-not-allowed
+  }
+
+  .secondary-btn {
+    @apply primary-btn bg-core-secondary text-supporting-bg disabled:cursor-not-allowed disabled:bg-core-secondary;
+  }
+
+  
+}
