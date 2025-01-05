@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily:{
+        italiana: ["Italiana", "serif"],
+        poppins: ["Poppins", "sans-serif"],
+      },
       colors: {
         core: {
           primary: "#FFE500",

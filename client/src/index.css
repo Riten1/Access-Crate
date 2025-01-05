@@ -17,11 +17,15 @@
   }
 
   .primary-btn{
-    @apply w-full rounded-full bg-core-primary px-3 py-3 text-base text-supporting-bg disabled:cursor-not-allowed
+    @apply  rounded-xl bg-core-primary px-3 py-3 text-base text-supporting-bg disabled:cursor-not-allowed
   }
 
   .secondary-btn {
     @apply primary-btn bg-core-secondary text-supporting-bg disabled:cursor-not-allowed disabled:bg-core-secondary;
+  }
+
+  .third-btn{
+    @apply bg-none border-2 rounded-xl border-core-primary text-core-primary font-semibold  px-3 py-3;
   }
 
   
