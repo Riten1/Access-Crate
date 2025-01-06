@@ -4,12 +4,12 @@ import { Link, useLocation } from "react-router-dom";
 import cn from "classnames";
 
 
-export const NavBar = () => {
+export const NavBar = ({className} : {className?: string}) => {
   const {pathname} = useLocation()
 
   const loginStatus = useSelector<RootState>((state) => state.user.loginStatus);
   return (
-    <div className="flex justify-between py-8 px-16 items-center align-middle">
+    <div className={cn(className, "flex justify-between py-8 px-16 items-center align-middle")}>
       <div className="flex gap-8 ">
         <Link to={"/about-us"}>
         <div className={cn("font-regular text-xl", {
