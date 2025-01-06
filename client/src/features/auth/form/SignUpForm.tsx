@@ -1,8 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { SignUpModal } from "../modal/SignUpModal";
 
 
 interface ILoginForm {
@@ -13,7 +11,7 @@ const schema = yup.object({
   email: yup.string().required("Email is required"),
   password: yup.string().required("Password is required"),
 }).required();
-export const LoginForm = ({closeModal}: {closeModal: () => void}) => {
+export const SignUpForm = ({closeModal}: {closeModal: () => void}) => {
 
   const {register, handleSubmit, reset, formState: {errors}} = useForm<ILoginForm>({
     resolver: yupResolver(schema)
@@ -22,12 +20,11 @@ export const LoginForm = ({closeModal}: {closeModal: () => void}) => {
   function handleLogin(data: ILoginForm) {
   console.log(data)
   } 
-  const [toggleSignUpModal, setToggleSignUpModal] = useState(false);
   return (
     <div className="flex flex-col gap-16">
       <div className="flex flex-col gap-1">
-      <h2 className="text-3xl font-semibold text-center">Login</h2>
-      <p className="text-base font-normal text-supporting-bg-light text-center">Enter the details below and login</p>
+      <h2 className="text-3xl font-semibold text-center">Sign Up</h2>
+      <p className="text-base font-normal text-supporting-bg-light text-center">Enter the details below and register</p>
       </div>
       
       <form className="flex flex-col gap-8" onSubmit={handleSubmit(handleLogin)}>
@@ -57,11 +54,6 @@ export const LoginForm = ({closeModal}: {closeModal: () => void}) => {
               <p className="text-red-700 text-sm">{errors.password.message}</p>
             )
           }
-
-          <div className="text-sm text-center my-5">Don't have an account?<span className="text-core-primary cursor-pointer underline" onClick={() =>{
-setToggleSignUpModal(true);
-closeModal();
-          } }>{" "}Sign Up</span></div>
         </fieldset>
         
         <div className="flex justify-between gap-4">
@@ -70,9 +62,6 @@ closeModal();
         </div>
         
       </form>
-      {
-        toggleSignUpModal && <SignUpModal isOpen={toggleSignUpModal} closeModal={closeModal} />
-      }
     </div>
   )
 }

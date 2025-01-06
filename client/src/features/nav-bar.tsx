@@ -6,12 +6,13 @@ import { useState } from "react";
 import Modal from "../components/ui/modal";
 import { LoginForm } from "./auth/form/LoginForm";
 import { LoginModal } from "./auth/modal/LoginModal";
+import { SignUpModal } from "./auth/modal/SignUpModal";
 
 
 export const NavBar = ({className} : {className?: string}) => {
   const {pathname} = useLocation()
 const [toggleLoginForm, setToggleLoginForm] = useState(false);
-
+const [toggleSignUpModal, setToggleSignUpModal] = useState(false);
 
   const loginStatus = useSelector<RootState>((state) => state.user.loginStatus);
   return (
@@ -58,7 +59,7 @@ const [toggleLoginForm, setToggleLoginForm] = useState(false);
           !loginStatus ? (
             <>
               <button className="third-btn" onClick={() => setToggleLoginForm(true)}>Sign In</button>
-              <button className="primary-btn font-semibold">Sign Up</button>
+              <button className="primary-btn font-semibold" onClick={() => setToggleSignUpModal(true)}>Sign Up</button>
             </>
           ): (
             <>
@@ -72,6 +73,11 @@ const [toggleLoginForm, setToggleLoginForm] = useState(false);
       {
         toggleLoginForm && (
          <LoginModal isOpen={toggleLoginForm} closeModal={() => setToggleLoginForm(false)}  />
+        )
+      }
+      {
+        toggleSignUpModal && (
+         <SignUpModal isOpen={toggleSignUpModal} closeModal={() => setToggleSignUpModal(false)}  />
         )
       }
     </div>
