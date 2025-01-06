@@ -11,4 +11,10 @@ export const userRoutes :IRoute[] = [
     path: "/",
     element: Home,
   },
+
+  {
+    id:"login",
+    path: "/login",
+    element: Home
+  }
 ];

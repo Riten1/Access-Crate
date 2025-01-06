@@ -2,6 +2,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { IRoute, userRoutes } from "./routes/user-routes";
+import ClientLayout from "../layout/layout";
 
 function Router() {
  
@@ -15,8 +16,10 @@ function Router() {
                 key={route.id}
                 path={route.path}
                 element={
-                 
-                    <route.element />
+                <ClientLayout>
+                  <route.element />
+                </ClientLayout>
+                   
                  
                 }
               />

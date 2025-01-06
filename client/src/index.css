@@ -21,7 +21,7 @@
   }
 
   .secondary-btn {
-    @apply primary-btn bg-core-secondary text-supporting-bg disabled:cursor-not-allowed disabled:bg-core-secondary;
+    @apply primary-btn bg-gray-200 text-supporting-bg disabled:cursor-not-allowed disabled:bg-core-secondary;
   }
 
   .third-btn{

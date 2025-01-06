@@ -2,17 +2,23 @@ import { useSelector } from "react-redux"
 import { RootState } from "../redux/store";
 import { Link, useLocation } from "react-router-dom";
 import cn from "classnames";
+import { useState } from "react";
+import Modal from "../components/ui/modal";
+import { LoginForm } from "./auth/form/LoginForm";
+import { LoginModal } from "./auth/modal/LoginModal";
 
 
 export const NavBar = ({className} : {className?: string}) => {
   const {pathname} = useLocation()
+const [toggleLoginForm, setToggleLoginForm] = useState(false);
+
 
   const loginStatus = useSelector<RootState>((state) => state.user.loginStatus);
   return (
-    <div className={cn(className, "flex justify-between py-8 px-16 items-center align-middle")}>
+    <div className={cn(className, "text-white flex justify-between py-8 px-16 items-center align-middle")}>
       <div className="flex gap-8 ">
         <Link to={"/about-us"}>
-        <div className={cn("font-regular text-xl", {
+        <div className={cn("font-regular text-xl ", {
           "rounded-lg bg-core-primary/[8%] !text-core-primary":
           pathname === "/about-us"
         }) }>About Us</div>
@@ -51,14 +57,23 @@ export const NavBar = ({className} : {className?: string}) => {
         {
           !loginStatus ? (
             <>
-              <button className="third-btn">Sign In</button>
+              <button className="third-btn" onClick={() => setToggleLoginForm(true)}>Sign In</button>
               <button className="primary-btn font-semibold">Sign Up</button>
             </>
           ): (
-            <button>Logout</button>
+            <>
+                <button>Logout</button>
+                <button>Profile</button>
+            </>
+        
           )
         }
       </div>
+      {
+        toggleLoginForm && (
+         <LoginModal isOpen={toggleLoginForm} closeModal={() => setToggleLoginForm(false)}  />
+        )
+      }
     </div>
   )
 }
