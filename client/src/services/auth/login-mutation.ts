@@ -18,7 +18,13 @@ const userLoginApi = async (data: ILoginProps) => {
   return { ...response.data };
 };
 
-const userLoginMutation = () => {
+const userLoginMutation = ({
+  closeModal,
+  reset,
+}: {
+  closeModal: () => void;
+  reset: () => void;
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -26,14 +32,14 @@ const userLoginMutation = () => {
     mutationFn: userLoginApi,
     onSuccess: (data) => {
       toast.success(data?.message || "Login successful");
-
+      reset();
+      data.success && closeModal();
       dispatch(
         setLogin({
           token: data?.data.accessToken,
           userData: {
             ...data?.data.user,
           },
-       
         })
       );
 

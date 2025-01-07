@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 import cn from "classnames";
 
-import Modal from "../components/ui/modal";
 import { RootState } from "../redux/store";
 import { LoginModal } from "./auth/modal/LoginModal";
 import { SignUpModal } from "./auth/modal/SignUpModal";
@@ -12,7 +11,6 @@ import { SignUpModal } from "./auth/modal/SignUpModal";
 export const NavBar = ({ className }: { className?: string }) => {
   const { pathname } = useLocation();
 
-  // Single state variable to manage modal visibility
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
@@ -25,7 +23,6 @@ export const NavBar = ({ className }: { className?: string }) => {
         "flex items-center justify-between px-16 py-8 align-middle text-white"
       )}
     >
-      {/* Navigation Links */}
       <div className="flex gap-8">
         <Link to={"/about-us"}>
           <div
@@ -60,14 +57,12 @@ export const NavBar = ({ className }: { className?: string }) => {
         </Link>
       </div>
 
-      {/* Brand Name */}
       <Link to={"/"}>
         <div className="font-italiana text-5xl text-core-primary">
           AccessCrate
         </div>
       </Link>
 
-      {/* Right Side Actions */}
       <div className="flex items-center gap-8 align-middle">
         <Link to={"/organizers"}>
           <div
@@ -80,7 +75,6 @@ export const NavBar = ({ className }: { className?: string }) => {
           </div>
         </Link>
 
-        {/* Conditional Buttons */}
         {!loginStatus ? (
           <>
             <button
@@ -103,8 +97,6 @@ export const NavBar = ({ className }: { className?: string }) => {
           </>
         )}
       </div>
-
-      {/* Modals */}
 
       <LoginModal
         isOpen={openLoginModal}

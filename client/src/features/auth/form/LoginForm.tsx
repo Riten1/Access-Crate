@@ -1,11 +1,8 @@
-import { useState } from "react";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import userLoginMutation from "../../../services/auth/login-mutation";
-import { SignUpModal } from "../modal/SignUpModal";
 
 interface ILoginForm {
   email: string;
@@ -28,7 +25,10 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
     resolver: yupResolver(schema),
   });
 
-  const { mutate: loginUser, isLoading } = userLoginMutation();
+  const { mutate: loginUser, isLoading } = userLoginMutation({
+    closeModal,
+    reset,
+  });
   function handleLogin(data: ILoginForm) {
     console.log(data);
     loginUser(data);
@@ -99,6 +99,7 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
           </button>
           <button className="primary-btn w-full font-semibold" type="submit">
             Login
+            {isLoading && "..."}
           </button>
         </div>
       </form>

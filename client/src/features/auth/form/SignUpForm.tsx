@@ -34,7 +34,10 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
     resolver: yupResolver(schema),
   });
 
-  const { mutate: registerUser, isLoading } = useRegisterUserMutation();
+  const { mutate: registerUser, isLoading } = useRegisterUserMutation({
+    closeModal,
+    reset,
+  });
 
   function handleRegister(data: ILoginForm) {
     const formData: any = new FormData();
@@ -162,6 +165,7 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
           </button>
           <button className="primary-btn w-full font-semibold" type="submit">
             Login
+            {isLoading && "..."}
           </button>
         </div>
       </form>
