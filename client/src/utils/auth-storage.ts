@@ -1,7 +1,6 @@
 import { IUser } from "../redux/slices/user-slice";
 
 interface ISetUserLoginProps {
-
   userData: IUser;
   token: string;
 }
@@ -18,11 +17,8 @@ export function getToken() {
   return null;
 }
 
-
 export function setUserLogin(props: ISetUserLoginProps) {
   const { userData, token } = props;
-
-
 
   sessionStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
   sessionStorage.setItem(TOKEN_KEY, token);
@@ -48,7 +44,6 @@ export function isUserLogin() {
   if (localStorageToken || sessionStorageToken || userData) return true;
   return false;
 }
-
 
 export function resetLoginData() {
   localStorage.clear();

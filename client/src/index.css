@@ -1,32 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Italiana&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
+@layer base {
   html {
     font-family: "Poppins", "san-serif";
     scroll-behavior: smooth;
   }
 }
 
-@layer components{
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@layer components {
   .input {
-    @apply block w-full rounded-md border border-neutral-200 px-2 py-3 text-sm font-normal outline-none
+    @apply block w-full rounded-md border border-neutral-200 px-2 py-3 text-sm font-normal outline-none;
   }
 
-  .primary-btn{
-    @apply  rounded-xl bg-core-primary px-3 py-3 text-base text-supporting-bg disabled:cursor-not-allowed
+  .primary-btn {
+    @apply rounded-xl bg-core-primary px-3 py-3 text-base text-supporting-bg disabled:cursor-not-allowed;
   }
 
   .secondary-btn {
     @apply primary-btn bg-gray-200 text-supporting-bg disabled:cursor-not-allowed disabled:bg-core-secondary;
   }
 
-  .third-btn{
-    @apply bg-none border-2 rounded-xl border-core-primary text-core-primary font-semibold  px-3 py-3;
+  .third-btn {
+    @apply rounded-xl border-2 border-core-primary bg-none px-3 py-3 font-semibold text-core-primary;
   }
-
-  
 }

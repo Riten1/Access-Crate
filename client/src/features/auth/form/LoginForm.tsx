@@ -1,28 +1,34 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { SignUpModal } from "../modal/SignUpModal";
-import userLoginMutation from "../../../services/auth/login-mutation";
 
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+
+import userLoginMutation from "../../../services/auth/login-mutation";
+import { SignUpModal } from "../modal/SignUpModal";
 
 interface ILoginForm {
   email: string;
   password: string;
 }
-const schema = yup.object({
-  email: yup.string().required("Email is required"),
-  password: yup.string().required("Password is required"),
-}).required();
+const schema = yup
+  .object({
+    email: yup.string().required("Email is required"),
+    password: yup.string().required("Password is required"),
+  })
+  .required();
 
-
-export const LoginForm = ({ closeModal, setActiveModal }: { setActiveModal: (modal: "login" | "signup" | "") => void; closeModal: () => void }) => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ILoginForm>({
+export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ILoginForm>({
     resolver: yupResolver(schema),
   });
 
-  const [toggleSignUpModal, setToggleSignUpModal] = useState(false);
-const {mutate: loginUser, isLoading} = userLoginMutation();
+  const { mutate: loginUser, isLoading } = userLoginMutation();
   function handleLogin(data: ILoginForm) {
     console.log(data);
     loginUser(data);
@@ -31,17 +37,19 @@ const {mutate: loginUser, isLoading} = userLoginMutation();
   return (
     <div className="flex flex-col gap-16">
       <div className="flex flex-col gap-1">
-        <h2 className="text-3xl font-semibold text-center">Login</h2>
-        <p className="text-base font-normal text-supporting-bg-light text-center">
+        <h2 className="text-center text-3xl font-semibold">Login</h2>
+        <p className="text-center text-base font-normal text-supporting-bg-light">
           Enter the details below and login
         </p>
       </div>
 
-      <form className="flex flex-col gap-8" onSubmit={handleSubmit(handleLogin)}>
+      <form
+        className="flex flex-col gap-8"
+        onSubmit={handleSubmit(handleLogin)}
+      >
         <fieldset className="flex flex-col gap-4">
           <label htmlFor="email" className="text-base font-semibold">
-            Email{" "}
-            <span className="text-red-700 font-semibold">*</span>
+            Email <span className="font-semibold text-red-700">*</span>
           </label>
           <input
             {...register("email")}
@@ -50,14 +58,13 @@ const {mutate: loginUser, isLoading} = userLoginMutation();
             className="input"
           />
           {errors.email && (
-            <p className="text-red-600 text-sm">{errors.email.message}</p>
+            <p className="text-sm text-red-600">{errors.email.message}</p>
           )}
         </fieldset>
 
         <fieldset className="flex flex-col gap-4">
           <label htmlFor="password" className="text-base font-semibold">
-            Password{" "}
-            <span className="text-red-600 font-semibold">*</span>
+            Password <span className="font-semibold text-red-600">*</span>
           </label>
           <input
             {...register("password")}
@@ -66,22 +73,21 @@ const {mutate: loginUser, isLoading} = userLoginMutation();
             className="input"
           />
           {errors.password && (
-            <p className="text-red-700 text-sm">{errors.password.message}</p>
+            <p className="text-sm text-red-700">{errors.password.message}</p>
           )}
         </fieldset>
 
-        <div className="text-sm text-center my-5">
-        Don't have an account?{" "}
-        <span
-          className="text-core-primary cursor-pointer underline"
-          onClick={() => {
-            setActiveModal("signup");
-            closeModal();
-          }}
-        >
-          Sign Up
-        </span>
-      </div>
+        <div className="my-5 text-center text-sm">
+          Don't have an account?{" "}
+          <span
+            className="cursor-pointer text-core-primary underline"
+            onClick={() => {
+              closeModal();
+            }}
+          >
+            Sign Up
+          </span>
+        </div>
 
         <div className="flex justify-between gap-4">
           <button
@@ -91,17 +97,11 @@ const {mutate: loginUser, isLoading} = userLoginMutation();
           >
             Cancel
           </button>
-          <button
-            className="primary-btn w-full font-semibold"
-            type="submit"
-          >
+          <button className="primary-btn w-full font-semibold" type="submit">
             Login
           </button>
         </div>
       </form>
-
-     
     </div>
   );
 };
-

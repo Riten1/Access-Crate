@@ -3,19 +3,19 @@ import { useMutation } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 
 import toast from "react-hot-toast";
-import { setLogin } from "../../redux/slices/user-slice";
-import http from "../../lib/http";
+
 import { ApiError } from "../../@types/apiError";
+import http from "../../lib/http";
+import { setLogin } from "../../redux/slices/user-slice";
 
 interface ILoginProps {
   email: string;
   password: string;
-
 }
 
 const userLoginApi = async (data: ILoginProps) => {
   const response = await http.post(`/auth/login`, data);
-  return { ...response.data};
+  return { ...response.data };
 };
 
 const userLoginMutation = () => {
@@ -32,9 +32,8 @@ const userLoginMutation = () => {
           token: data?.data.accessToken,
           userData: {
             ...data?.data.user,
-            
           },
-          isRememberMe: data.isRememberMe,
+       
         })
       );
 

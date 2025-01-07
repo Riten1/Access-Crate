@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { Link, useLocation } from "react-router-dom";
-import cn from "classnames";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import cn from "classnames";
+
 import Modal from "../components/ui/modal";
+import { RootState } from "../redux/store";
 import { LoginModal } from "./auth/modal/LoginModal";
 import { SignUpModal } from "./auth/modal/SignUpModal";
 
@@ -11,18 +13,25 @@ export const NavBar = ({ className }: { className?: string }) => {
   const { pathname } = useLocation();
 
   // Single state variable to manage modal visibility
-  const [activeModal, setActiveModal] = useState<"login" | "signup" | "">("");
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
   const loginStatus = useSelector<RootState>((state) => state.user.loginStatus);
 
   return (
-    <div className={cn(className, "text-white flex justify-between py-8 px-16 items-center align-middle")}>
+    <div
+      className={cn(
+        className,
+        "flex items-center justify-between px-16 py-8 align-middle text-white"
+      )}
+    >
       {/* Navigation Links */}
       <div className="flex gap-8">
         <Link to={"/about-us"}>
           <div
             className={cn("font-regular text-xl", {
-              "rounded-lg bg-core-primary/[8%] !text-core-primary": pathname === "/about-us",
+              "rounded-lg bg-core-primary/[8%] !text-core-primary":
+                pathname === "/about-us",
             })}
           >
             About Us
@@ -31,7 +40,8 @@ export const NavBar = ({ className }: { className?: string }) => {
         <Link to={"/tickets"}>
           <div
             className={cn("font-regular text-xl", {
-              "rounded-lg bg-core-primary/[8%] !text-core-primary": pathname === "/tickets",
+              "rounded-lg bg-core-primary/[8%] !text-core-primary":
+                pathname === "/tickets",
             })}
           >
             Tickets
@@ -41,7 +51,8 @@ export const NavBar = ({ className }: { className?: string }) => {
         <Link to={"/events"}>
           <div
             className={cn("font-regular text-xl", {
-              "rounded-lg bg-core-primary/[8%] !text-core-primary": pathname === "/events",
+              "rounded-lg bg-core-primary/[8%] !text-core-primary":
+                pathname === "/events",
             })}
           >
             Events
@@ -51,15 +62,18 @@ export const NavBar = ({ className }: { className?: string }) => {
 
       {/* Brand Name */}
       <Link to={"/"}>
-        <div className="font-italiana text-5xl text-core-primary">AccessCrate</div>
+        <div className="font-italiana text-5xl text-core-primary">
+          AccessCrate
+        </div>
       </Link>
 
       {/* Right Side Actions */}
-      <div className="flex gap-8 items-center align-middle">
+      <div className="flex items-center gap-8 align-middle">
         <Link to={"/organizers"}>
           <div
             className={cn("font-regular text-xl", {
-              "rounded-lg bg-core-primary/[8%] !text-core-primary": pathname === "/organizers",
+              "rounded-lg bg-core-primary/[8%] !text-core-primary":
+                pathname === "/organizers",
             })}
           >
             Organizers
@@ -69,10 +83,16 @@ export const NavBar = ({ className }: { className?: string }) => {
         {/* Conditional Buttons */}
         {!loginStatus ? (
           <>
-            <button className="third-btn" onClick={() => setActiveModal("login")}>
+            <button
+              className="third-btn"
+              onClick={() => setOpenLoginModal(true)}
+            >
               Sign In
             </button>
-            <button className="primary-btn font-semibold" onClick={() => setActiveModal("signup")}>
+            <button
+              className="primary-btn font-semibold"
+              onClick={() => setOpenSignUpModal(true)}
+            >
               Sign Up
             </button>
           </>
@@ -85,20 +105,16 @@ export const NavBar = ({ className }: { className?: string }) => {
       </div>
 
       {/* Modals */}
-      {activeModal === "login" && (
-        <LoginModal
-          isOpen={true}
-          closeModal={() => setActiveModal("")}
-          setActiveModal={setActiveModal} // Allow switching to Sign Up
-        />
-      )}
-      {activeModal === "signup" && (
-        <SignUpModal
-          isOpen={true}
-          closeModal={() => setActiveModal("")}
-          setActiveModal={setActiveModal} // Allow switching to Sign In
-        />
-      )}
+
+      <LoginModal
+        isOpen={openLoginModal}
+        closeModal={() => setOpenLoginModal(false)}
+      />
+
+      <SignUpModal
+        isOpen={openSignUpModal}
+        closeModal={() => setOpenSignUpModal(false)}
+      />
     </div>
   );
 };

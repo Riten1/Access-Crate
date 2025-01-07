@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { getToken, resetLoginData } from "../utils/auth-storage";
+
 const baseURL: string | undefined = import.meta.env.VITE_BASE_URL;
 
 const http = axios.create({
@@ -26,10 +27,7 @@ http.interceptors.response.use(
   },
 
   function (error) {
-    if (
-  
-      error.response.status === 401
-    ) {
+    if (error.response.status === 401) {
       resetLoginData();
       window.location.href = "/login/admin";
     }

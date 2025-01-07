@@ -1,15 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getToken, getUserData, isUserLogin, resetLoginData, setUserLogin, setUserData } from "../../utils/auth-storage";
+import {
+  getToken,
+  getUserData,
+  isUserLogin,
+  resetLoginData,
+  setUserData,
+  setUserLogin,
+} from "../../utils/auth-storage";
 
-export interface IUser{
+export interface IUser {
   id: number;
   full_name: string;
- 
+
   email: string;
   profile_pic: string;
   created_at: string;
-  updated_at: string; 
+  updated_at: string;
   role: string;
   contact_info: string;
   address: string;
