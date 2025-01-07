@@ -1,11 +1,14 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 
+import { MantineProvider } from "@mantine/core";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import { Toaster } from "react-hot-toast";
 
 import { store } from "./redux/store";
 import Router from "./router/router";
+
+import "@mantine/core/styles.css";
 
 function App() {
   const queryClient = new QueryClient({
@@ -24,9 +27,11 @@ function App() {
     <>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <LenisScrollLayout>
-            <Router />
-          </LenisScrollLayout>
+          <MantineProvider>
+            <LenisScrollLayout>
+              <Router />
+            </LenisScrollLayout>
+          </MantineProvider>
         </QueryClientProvider>
       </Provider>
       <Toaster

@@ -23,7 +23,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   .primary-btn {
-    @apply rounded-xl bg-core-primary px-3 py-3 text-base text-supporting-bg disabled:cursor-not-allowed;
+    @apply rounded-xl bg-core-primary px-6 py-3 text-base text-supporting-bg disabled:cursor-not-allowed;
   }
 
   .secondary-btn {
@@ -31,6 +31,6 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   .third-btn {
-    @apply rounded-xl border-2 border-core-primary bg-none px-3 py-3 font-semibold text-core-primary;
+    @apply rounded-xl border-2 border-core-primary bg-none px-6 py-3 font-semibold text-core-primary;
   }
 }
