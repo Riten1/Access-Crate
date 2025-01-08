@@ -1,9 +1,9 @@
-  /** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      fontFamily:{
+      fontFamily: {
         italiana: ["Italiana", "serif"],
         poppins: ["Poppins", "sans-serif"],
       },
@@ -13,11 +13,10 @@ export default {
           secondary: "#BCBCBC",
         },
         supporting: {
-          bg : "#2D364C",
-          "bg-light" : "#525A6C",
-
-        }
-      }
+          bg: "#2D364C",
+          "bg-light": "#525A6C",
+        },
+      },
     },
   },
   plugins: [],

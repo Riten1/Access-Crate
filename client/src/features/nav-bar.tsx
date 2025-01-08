@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
+import { Burger } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import cn from "classnames";
 
-import Menu from "../components/ui/Burger";
 import { RootState } from "../redux/store";
 import { LoginModal } from "./auth/modal/LoginModal";
 import { SignUpModal } from "./auth/modal/SignUpModal";
@@ -14,7 +16,7 @@ export const NavBar = ({ className }: { className?: string }) => {
 
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [opened, { toggle }] = useDisclosure();
 
   const loginStatus = useSelector<RootState>((state) => state.user.loginStatus);
 
@@ -87,7 +89,7 @@ export const NavBar = ({ className }: { className?: string }) => {
                 Sign In
               </button>
               <button
-                className="primary-btn font-semibold sm:px-3 sm:py-1 md:px-3 md:py-1 lg:px-6 lg:py-3"
+                className="primary-btn !font-poppins font-semibold sm:px-3 sm:py-1 md:px-3 md:py-1 lg:px-6 lg:py-3"
                 onClick={() => setOpenSignUpModal(true)}
               >
                 Sign Up
@@ -115,23 +117,62 @@ export const NavBar = ({ className }: { className?: string }) => {
         <div className="font-italiana text-4xl text-core-primary sm:text-2xl md:text-4xl lg:text-5xl">
           AccessCrate
         </div>
-        <Menu />
-
-        {/* <div className="flex flex-col gap-8">
-          //   <Link to={"/about-us"}>
-          //     <div className="font-regular text-lg">About Us</div>
-          //   </Link>
-          //   <Link to={"/tickets"}>
-          //     <div className="font-regular text-lg">Tickets</div>
-          //   </Link>
-          //   <Link to={"/events"}>
-          //     <div className="font-regular text-lg">Events</div>
-          //   </Link>
-          //   <Link to={"/organizers"}>
-          //     <div className="font-regular text-lg">Organizers</div>
-          //   </Link>
-          // </div> */}
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          aria-label="Toggle navigation"
+          color="#FFE500"
+        />
       </div>
+      {opened && (
+        <div
+          className={cn(
+            "absolute right-0 top-28 z-50 flex flex-col bg-supporting-bg text-right duration-700 sm:hidden"
+          )}
+        >
+          <Link to={"/about-us"}>
+            <div className="font-regular p-4 text-lg font-semibold text-white duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105 hover:bg-supporting-bg-light">
+              About Us
+            </div>
+          </Link>
+          <Link to={"/tickets"}>
+            <div className="font-regular p-4 text-lg font-semibold text-white duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105 hover:bg-supporting-bg-light">
+              Tickets
+            </div>
+          </Link>
+          <Link to={"/events"}>
+            <div className="font-regular p-4 text-lg font-semibold text-white duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105 hover:bg-supporting-bg-light">
+              Events
+            </div>
+          </Link>
+          <Link to={"/organizers"}>
+            <div className="font-regular p-4 text-lg font-semibold text-white duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105 hover:bg-supporting-bg-light">
+              Organizers
+            </div>
+          </Link>
+          {!loginStatus ? (
+            <>
+              <button
+                className="font-regular bg-core-primary p-4 text-lg font-semibold text-supporting-bg duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105"
+                onClick={() => setOpenLoginModal(true)}
+              >
+                Sign In
+              </button>
+              <button
+                className="font-regular bg-core-primary p-4 text-lg font-semibold text-supporting-bg duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105"
+                onClick={() => setOpenSignUpModal(true)}
+              >
+                Sign Up
+              </button>
+            </>
+          ) : (
+            <>
+              <button></button>
+              <button>Profile</button>
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 };

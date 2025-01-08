@@ -54,7 +54,7 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
             className="flex flex-col gap-8"
             onSubmit={handleSubmit(handleLogin)}
           >
-            <fieldset className="flex flex-col gap-4">
+            <fieldset className="flex flex-col gap-2">
               <label htmlFor="email" className="text-base font-semibold">
                 Email <span className="font-semibold text-red-700">*</span>
               </label>
@@ -69,7 +69,7 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
               )}
             </fieldset>
 
-            <fieldset className="flex flex-col gap-4">
+            <fieldset className="flex flex-col gap-2">
               <label htmlFor="password" className="text-base font-semibold">
                 Password <span className="font-semibold text-red-600">*</span>
               </label>
@@ -89,7 +89,7 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
             <div className="my-5 text-center text-sm">
               Don't have an account?{" "}
               <span
-                className="cursor-pointer text-core-primary underline"
+                className="cursor-pointer font-semibold text-core-primary underline"
                 onClick={() => {
                   setOpenSignUpForm(true);
                   console.log(openSignUpForm);
@@ -99,7 +99,7 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
               </span>
             </div>
 
-            <div className="flex justify-between gap-4">
+            <div className="flex justify-between gap-2">
               <button
                 className="secondary-btn w-full font-semibold"
                 type="button"

@@ -158,7 +158,7 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
             <div className="my-5 text-center text-sm">
               Already have an account?{" "}
               <span
-                className="cursor-pointer text-core-primary underline"
+                className="cursor-pointer font-semibold text-core-primary underline"
                 onClick={() => {
                   setOpenLoginForm(true);
                   console.log(openLoginForm);

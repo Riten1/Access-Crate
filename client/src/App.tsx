@@ -27,7 +27,7 @@ function App() {
     <>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <MantineProvider>
+          <MantineProvider withGlobalClasses={false}>
             <LenisScrollLayout>
               <Router />
             </LenisScrollLayout>
