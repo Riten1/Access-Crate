@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import { Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import cn from "classnames";
@@ -31,20 +30,26 @@ export const NavBar = ({ className }: { className?: string }) => {
         <div className="flex gap-8">
           <Link to={"/about-us"}>
             <div
-              className={cn("font-regular text-sm md:text-lg lg:text-xl", {
-                "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                  pathname === "/about-us",
-              })}
+              className={cn(
+                "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
+                {
+                  "rounded-lg bg-core-primary/[8%] !text-core-primary":
+                    pathname === "/about-us",
+                }
+              )}
             >
               About Us
             </div>
           </Link>
           <Link to={"/tickets"}>
             <div
-              className={cn("font-regular text-sm md:text-lg lg:text-xl", {
-                "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                  pathname === "/tickets",
-              })}
+              className={cn(
+                "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
+                {
+                  "rounded-lg bg-core-primary/[8%] !text-core-primary":
+                    pathname === "/tickets",
+                }
+              )}
             >
               Tickets
             </div>
@@ -52,10 +57,13 @@ export const NavBar = ({ className }: { className?: string }) => {
 
           <Link to={"/events"}>
             <div
-              className={cn("font-regular text-sm md:text-lg lg:text-xl", {
-                "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                  pathname === "/events",
-              })}
+              className={cn(
+                "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
+                {
+                  "rounded-lg bg-core-primary/[8%] !text-core-primary":
+                    pathname === "/events",
+                }
+              )}
             >
               Events
             </div>
@@ -63,18 +71,21 @@ export const NavBar = ({ className }: { className?: string }) => {
         </div>
 
         <Link to={"/"}>
-          <div className="font-italiana text-xl text-core-primary sm:text-2xl md:text-4xl lg:text-5xl">
-            AccessCrate
+          <div className="text-xl text-core-primary sm:text-2xl md:text-4xl lg:text-2xl tracking-[10px]">
+            Access Crate
           </div>
         </Link>
 
         <div className="flex items-center gap-8 align-middle">
           <Link to={"/organizers"}>
             <div
-              className={cn("font-regular text-sm md:text-lg lg:text-xl", {
-                "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                  pathname === "/organizers",
-              })}
+              className={cn(
+                "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
+                {
+                  "rounded-lg bg-core-primary/[8%] !text-core-primary":
+                    pathname === "/organizers",
+                }
+              )}
             >
               Organizers
             </div>
@@ -82,17 +93,17 @@ export const NavBar = ({ className }: { className?: string }) => {
 
           {!loginStatus ? (
             <>
-              <button
+              {/* <button
                 className="third-btn sm:px-3 sm:py-1 md:px-3 md:py-1 lg:px-6 lg:py-3"
                 onClick={() => setOpenLoginModal(true)}
               >
                 Sign In
-              </button>
+              </button> */}
               <button
                 className="primary-btn !font-poppins font-semibold sm:px-3 sm:py-1 md:px-3 md:py-1 lg:px-6 lg:py-3"
-                onClick={() => setOpenSignUpModal(true)}
+                onClick={() => setOpenLoginModal(true)}
               >
-                Sign Up
+                Sign In
               </button>
             </>
           ) : (
@@ -127,11 +138,11 @@ export const NavBar = ({ className }: { className?: string }) => {
       {opened && (
         <div
           className={cn(
-            "absolute right-0 top-28 z-50 flex flex-col bg-supporting-bg text-right duration-700 sm:hidden"
+            "absolute right-0 top-28 z-50 flex flex-col rounded-l-2xl bg-supporting-bg text-right duration-700 sm:hidden"
           )}
         >
           <Link to={"/about-us"}>
-            <div className="font-regular p-4 text-lg font-semibold text-white duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105 hover:bg-supporting-bg-light">
+            <div className="font-regular p-4 text-lg font-semibold text-white duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105 hover:rounded-tl-2xl hover:bg-supporting-bg-light">
               About Us
             </div>
           </Link>
@@ -159,7 +170,7 @@ export const NavBar = ({ className }: { className?: string }) => {
                 Sign In
               </button>
               <button
-                className="font-regular bg-core-primary p-4 text-lg font-semibold text-supporting-bg duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105"
+                className="font-regular rounded-bl-2xl bg-core-primary p-4 text-lg font-semibold text-supporting-bg duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105"
                 onClick={() => setOpenSignUpModal(true)}
               >
                 Sign Up
@@ -167,7 +178,7 @@ export const NavBar = ({ className }: { className?: string }) => {
             </>
           ) : (
             <>
-              <button></button>
+              <button>Cart</button>
               <button>Profile</button>
             </>
           )}

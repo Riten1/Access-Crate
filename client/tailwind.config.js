@@ -15,6 +15,7 @@ export default {
         supporting: {
           bg: "#2D364C",
           "bg-light": "#525A6C",
+          "bg-dark": "#242C3D",
         },
       },
     },

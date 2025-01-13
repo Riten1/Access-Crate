@@ -6,30 +6,24 @@ import toast from "react-hot-toast";
 
 import { ApiError } from "../../@types/apiError";
 import http from "../../lib/http";
-import { setLogin } from "../../redux/slices/user-slice";
+import { resetLogin } from "../../redux/slices/user-slice";
 
-interface ILoginProps {
-  email: string;
-  password: string;
-}
-
-const userLoginApi = async (data: ILoginProps) => {
-  const response = await http.post(`/auth/login`, data);
-  return { ...response.data };
+const getLogoutApi = async () => {
+  const response = await http.post(`/auth/logout`);
+  return response;
 };
 
-const userLoginMutation = () => {
+export const useLogoutMutation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return useMutation({
-    mutationFn: userLoginApi,
+    mutationFn: getLogoutApi,
     onSuccess: (data) => {
-      localStorage.setItem("token", data?.token);
-      dispatch(setLogin({
-        accessToken: data?.token,
-      }));
+      localStorage.clear();
+      sessionStorage.clear();
+      dispatch(resetLogin());
       navigate("/");
-      toast.success(data?.message || "Login successful");
+      toast.success(data.data.message || "Logout successful");
     },
     onError: (error) => {
       const e = error as ApiError;
@@ -37,5 +31,3 @@ const userLoginMutation = () => {
     },
   });
 };
-
-export default userLoginMutation;
