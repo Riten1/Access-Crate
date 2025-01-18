@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 import { Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import cn from "classnames";
+import { ShoppingBag03Icon } from "hugeicons-react";
 
+import HoverUser from "../components/ui/HoverLogin";
 import { RootState } from "../redux/store";
 import { LoginModal } from "./auth/modal/LoginModal";
 import { SignUpModal } from "./auth/modal/SignUpModal";
@@ -34,11 +36,11 @@ export const NavBar = ({ className }: { className?: string }) => {
                 "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
                 {
                   "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                    pathname === "/about-us",
+                    pathname === "/events",
                 }
               )}
             >
-              About Us
+              Events
             </div>
           </Link>
           <Link to={"/tickets"}>
@@ -61,17 +63,17 @@ export const NavBar = ({ className }: { className?: string }) => {
                 "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
                 {
                   "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                    pathname === "/events",
+                    pathname === "/organizers",
                 }
               )}
             >
-              Events
+              Organizers
             </div>
           </Link>
         </div>
 
         <Link to={"/"}>
-          <div className="text-xl text-core-primary sm:text-2xl md:text-4xl lg:text-2xl tracking-[10px]">
+          <div className="text-xl tracking-[10px] text-core-primary sm:text-2xl md:text-4xl lg:text-2xl">
             Access Crate
           </div>
         </Link>
@@ -83,11 +85,11 @@ export const NavBar = ({ className }: { className?: string }) => {
                 "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
                 {
                   "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                    pathname === "/organizers",
+                    pathname === "/about-us",
                 }
               )}
             >
-              Organizers
+              About Us
             </div>
           </Link>
 
@@ -108,8 +110,8 @@ export const NavBar = ({ className }: { className?: string }) => {
             </>
           ) : (
             <>
-              <button>Logout</button>
-              <button>Profile</button>
+              <ShoppingBag03Icon />
+              <HoverUser />
             </>
           )}
         </div>
@@ -179,7 +181,6 @@ export const NavBar = ({ className }: { className?: string }) => {
           ) : (
             <>
               <button>Cart</button>
-              <button>Profile</button>
             </>
           )}
         </div>

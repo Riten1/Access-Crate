@@ -19,15 +19,14 @@ export const useLogoutMutation = () => {
   return useMutation({
     mutationFn: getLogoutApi,
     onSuccess: (data) => {
-      localStorage.clear();
-      sessionStorage.clear();
       dispatch(resetLogin());
-      navigate("/");
+      navigate("/", { replace: true });
       toast.success(data.data.message || "Logout successful");
     },
     onError: (error) => {
       const e = error as ApiError;
-      toast.error(e?.response?.message || "Something went wrong");
+      console.log(error);
+      toast.error(e?.response?.data?.message || "Something went wrong");
     },
   });
 };

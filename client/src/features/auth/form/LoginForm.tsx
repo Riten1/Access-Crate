@@ -35,7 +35,6 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
     reset,
   });
   function handleLogin(data: ILoginForm) {
-    console.log(data);
     loginUser(data);
   }
 

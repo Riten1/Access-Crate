@@ -18,24 +18,35 @@ const userLoginApi = async (data: ILoginProps) => {
   return { ...response.data };
 };
 
-const userLoginMutation = () => {
+const useUserLoginMutation = ({
+  closeModal,
+  reset,
+}: {
+  closeModal: () => void;
+  reset: () => void;
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   return useMutation({
     mutationFn: userLoginApi,
     onSuccess: (data) => {
-      localStorage.setItem("token", data?.token);
-      dispatch(setLogin({
-        accessToken: data?.token,
-      }));
+      dispatch(
+        setLogin({
+          accessToken: data?.data.accessToken,
+          userData: { ...data?.data.user },
+        })
+      );
+      reset();
+      closeModal();
       navigate("/");
       toast.success(data?.message || "Login successful");
     },
     onError: (error) => {
       const e = error as ApiError;
-      toast.error(e?.response?.message || "Something went wrong");
+      toast.error(e?.response?.data?.message || "Something went wrong");
     },
   });
 };
 
-export default userLoginMutation;
+export default useUserLoginMutation;

@@ -29,7 +29,7 @@ http.interceptors.response.use(
   function (error) {
     if (error.response.status === 401) {
       resetLoginData();
-      window.location.href = "/login/admin";
+      window.location.href = "/";
     }
 
     return Promise.reject(error);

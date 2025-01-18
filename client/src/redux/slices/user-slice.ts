@@ -43,7 +43,7 @@ export const userSlice = createSlice({
   reducers: {
     setLogin: (state, action) => {
       setUserLogin({ ...action.payload });
-      state.accessToken = action.payload?.token;
+      state.accessToken = action.payload?.accessToken;
       state.user = action.payload?.userData;
       state.loginStatus = true;
     },

@@ -12,16 +12,12 @@ interface ILoginForm {
   full_name: string;
   email: string;
   password: string;
-  address?: string;
-  contact_info: string;
-  profile_pic?: any;
 }
 const schema = yup
   .object({
     full_name: yup.string().required("Full Name is required"),
     email: yup.string().required("Email is required"),
     password: yup.string().required("Password is required"),
-    contact_info: yup.string().required("Phone Number is required"),
   })
   .required();
 export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
@@ -46,12 +42,6 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
     formData.append("full_name", data.full_name);
     formData.append("email", data.email);
     formData.append("password", data.password);
-    formData.append("address", data?.address || "");
-    formData.append("contact_info", data.contact_info);
-
-    if (data.profile_pic && data.profile_pic[0]) {
-      formData.append("profile_pic", data.profile_pic[0]);
-    }
 
     registerUser(formData);
   }
@@ -71,7 +61,6 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
             className="flex flex-col gap-8"
             onSubmit={handleSubmit(handleRegister)}
           >
-            <input type="file" {...register("profile_pic")}></input>
             <fieldset className="flex flex-col gap-2">
               <label htmlFor="Full_name" className="text-base font-semibold">
                 Full Name <span className="font-semibold text-red-700">*</span>
@@ -121,40 +110,6 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
               )}
             </fieldset>
 
-            <div className="flex justify-between gap-4">
-              <fieldset className="flex w-full flex-col gap-2">
-                <label htmlFor="address" className="text-base font-semibold">
-                  Location{" "}
-                </label>
-                <input
-                  {...register("address")}
-                  type="text"
-                  placeholder="Enter your address"
-                  className="input"
-                ></input>
-              </fieldset>
-              <fieldset className="flex w-full flex-col gap-2">
-                <label
-                  htmlFor="contact_info"
-                  className="text-base font-semibold"
-                >
-                  Phone Number{" "}
-                  <span className="font-semibold text-red-700">*</span>
-                </label>
-                <input
-                  {...register("contact_info")}
-                  type="number"
-                  placeholder="Enter your phone number"
-                  className="input !appearance-none"
-                  min={0}
-                ></input>
-                {errors.contact_info && (
-                  <p className="text-sm text-red-600">
-                    {errors.contact_info.message}
-                  </p>
-                )}
-              </fieldset>
-            </div>
             <div className="my-5 text-center text-sm">
               Already have an account?{" "}
               <span

@@ -1,6 +1,6 @@
 import bgImage from "../assets/bgEvent.jpg";
-import JohnProfile from "../assets/jon2.png";
-import JohnCover from "../assets/jonCover.jpg";
+// import JohnProfile from "../assets/jon2.png";
+// import JohnCover from "../assets/jonCover.jpg";
 import Johnrai from "../assets/jonRaiEvent.png";
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
         alt="Cover"
       />
 
-      <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 flex-col-reverse flex items-center gap-4 lg:flex-row lg:gap-8">
+      <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col-reverse items-center gap-4 lg:flex-row lg:gap-8">
         <div className="md:text:4xl flex w-full flex-col items-center justify-center gap-2 text-center text-3xl font-semibold text-core-primary lg:gap-8 lg:text-5xl">
           <div className="flex flex-col gap-4">
             <h1 className="">John And The Locals</h1>
@@ -26,7 +26,7 @@ const Home = () => {
             <p className="mt-10 text-sm font-medium text-white md:text-base lg:text-lg">
               December 31, 2025
             </p>
-            <p className="font-semi text-xl text-white">
+            <p className="font-semi text-lg text-white lg:text-xl">
               Hyatt Regency, Kathmandu
             </p>
           </div>
@@ -34,7 +34,7 @@ const Home = () => {
           <button className="primary-btn !w-[200px]">Buy Tickets</button>
         </div>
 
-        <div className="overflow-hidden sm:w-1/2 w-[200px] md:w-1/2 lg:w-full">
+        <div className="w-[200px] overflow-hidden sm:w-1/2 md:w-1/2 lg:w-full">
           <img src={Johnrai} className="shadow-md" alt="trending" />
         </div>
       </div>

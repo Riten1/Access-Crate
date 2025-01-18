@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
 
 import toast from "react-hot-toast";
 
 import { ApiError } from "../../@types/apiError";
 import http from "../../lib/http";
+import { setLogin } from "../../redux/slices/user-slice";
 
 interface ISignUpProps {
   email: string;
@@ -28,18 +30,27 @@ const useRegisterUserMutation = ({
   reset: () => void;
 }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return useMutation({
     mutationFn: userRegisterApi,
     onSuccess: (data) => {
-      toast.success(data?.message || "Login successful");
+      toast.success(data?.message || "User registered successfully");
       reset();
-      data.success && closeModal();
+      dispatch(
+        setLogin({
+          accessToken: data?.data.accessToken,
+          userData: { ...data?.data.user },
+        })
+      );
+      console.log(data);
+      closeModal();
       navigate("/");
     },
     onError: (error) => {
       const e = error as ApiError;
-      toast.error(e?.response?.message || "Something went wrong");
+      console.log(e);
+      toast.error(e?.response?.data?.message || "Something went wrong");
     },
   });
 };

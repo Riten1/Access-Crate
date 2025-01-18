@@ -2,7 +2,7 @@ import { IUser } from "../redux/slices/user-slice";
 
 interface ISetUserLoginProps {
   userData: IUser;
-  token: string;
+  accessToken: string;
 }
 
 const TOKEN_KEY = "token";
@@ -18,10 +18,10 @@ export function getToken() {
 }
 
 export function setUserLogin(props: ISetUserLoginProps) {
-  const { userData, token } = props;
+  const { userData, accessToken } = props;
 
   sessionStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
-  sessionStorage.setItem(TOKEN_KEY, token);
+  sessionStorage.setItem(TOKEN_KEY, accessToken);
 }
 
 export function getUserData() {
