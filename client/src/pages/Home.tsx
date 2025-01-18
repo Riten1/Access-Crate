@@ -15,18 +15,18 @@ const Home = () => {
         alt="Cover"
       />
 
-      <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 items-center gap-8 lg:flex">
-        <div className="flex w-full flex-col items-center justify-center gap-8 text-center text-6xl font-semibold text-core-primary">
+      <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 flex-col-reverse flex items-center gap-4 lg:flex-row lg:gap-8">
+        <div className="md:text:4xl flex w-full flex-col items-center justify-center gap-2 text-center text-3xl font-semibold text-core-primary lg:gap-8 lg:text-5xl">
           <div className="flex flex-col gap-4">
             <h1 className="">John And The Locals</h1>
             {/* <h2 className="text-4xl font-semibold text-white">Live In Nepal</h2> */}
           </div>
 
           <div className="flex flex-col gap-2">
-            <p className="mt-10 text-xl font-medium text-white">
+            <p className="mt-10 text-sm font-medium text-white md:text-base lg:text-lg">
               December 31, 2025
             </p>
-            <p className="font-semi text-2xl text-white">
+            <p className="font-semi text-xl text-white">
               Hyatt Regency, Kathmandu
             </p>
           </div>
@@ -34,7 +34,7 @@ const Home = () => {
           <button className="primary-btn !w-[200px]">Buy Tickets</button>
         </div>
 
-        <div className="w-[900px] overflow-hidden">
+        <div className="overflow-hidden sm:w-1/2 w-[200px] md:w-1/2 lg:w-full">
           <img src={Johnrai} className="shadow-md" alt="trending" />
         </div>
       </div>
