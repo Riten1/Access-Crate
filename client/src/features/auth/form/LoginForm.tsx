@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ViewIcon, ViewOffIcon } from "hugeicons-react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -29,6 +30,7 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
     resolver: yupResolver(schema),
   });
   const [openSignUpForm, setOpenSignUpForm] = useState(false);
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const { mutate: loginUser, isLoading } = userLoginMutation({
     closeModal,
@@ -72,12 +74,28 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
               <label htmlFor="password" className="text-base font-semibold">
                 Password <span className="font-semibold text-red-600">*</span>
               </label>
-              <input
-                {...register("password")}
-                type="password"
-                placeholder="Enter your password"
-                className="input"
-              />
+              <div className="relative">
+                <input
+                  {...register("password")}
+                  type={isPasswordShown ? "text" : "password"}
+                  className="input pr-10"
+                  id="password"
+                  placeholder="Enter your password"
+                />
+                <div className="absolute right-0 top-1/2 w-8 -translate-y-1/2 cursor-pointer">
+                  {isPasswordShown ? (
+                    <ViewIcon
+                      width={22}
+                      onClick={() => setIsPasswordShown(false)}
+                    />
+                  ) : (
+                    <ViewOffIcon
+                      width={22}
+                      onClick={() => setIsPasswordShown(true)}
+                    />
+                  )}
+                </div>
+              </div>
               {errors.password && (
                 <p className="text-sm text-red-700">
                   {errors.password.message}
@@ -107,10 +125,11 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
                 Cancel
               </button>
               <button
-                className="primary-btn w-full font-semibold"
+                className="primary-btn !flex w-full items-center justify-center gap-2 font-semibold"
                 type="submit"
               >
-                Login
+                <div>Login</div>
+
                 {isLoading && <Loading />}
               </button>
             </div>

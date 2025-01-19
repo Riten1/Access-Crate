@@ -11,6 +11,7 @@ import HoverUser from "../components/ui/HoverLogin";
 import { RootState } from "../redux/store";
 import { LoginModal } from "./auth/modal/LoginModal";
 import { SignUpModal } from "./auth/modal/SignUpModal";
+import ToggleUser from "../components/ui/ToggleUser";
 
 export const NavBar = ({ className }: { className?: string }) => {
   const { pathname } = useLocation();
@@ -171,16 +172,15 @@ export const NavBar = ({ className }: { className?: string }) => {
               >
                 Sign In
               </button>
-              <button
-                className="font-regular rounded-bl-2xl bg-core-primary p-4 text-lg font-semibold text-supporting-bg duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105"
-                onClick={() => setOpenSignUpModal(true)}
-              >
-                Sign Up
-              </button>
             </>
           ) : (
             <>
-              <button>Cart</button>
+              <div className="flex justify-center font-regular cursor-pointer bg-core-primary p-4 text-lg font-semibold text-supporting-bg-dark duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105">
+                <ShoppingBag03Icon />
+              </div>
+              <div className="font-regular cursor-pointer bg-core-primary p-4 text-lg font-semibold text-supporting-bg-dark duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105 flex justify-center">
+                <ToggleUser />
+              </div>
             </>
           )}
         </div>

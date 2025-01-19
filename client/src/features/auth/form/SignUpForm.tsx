@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ViewIcon, ViewOffIcon } from "hugeicons-react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -31,6 +32,7 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
   });
 
   const [openLoginForm, setOpenLoginForm] = useState(false);
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const { mutate: registerUser, isLoading } = useRegisterUserMutation({
     closeModal,
@@ -97,12 +99,28 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
               <label htmlFor="password" className="text-base font-semibold">
                 Password <span className="font-semibold text-red-600">*</span>
               </label>
-              <input
-                {...register("password")}
-                type="password"
-                placeholder="Enter your password"
-                className="input"
-              ></input>
+              <div className="relative">
+                <input
+                  {...register("password")}
+                  type={isPasswordShown ? "text" : "password"}
+                  className="input pr-10"
+                  id="password"
+                  placeholder="Enter your password"
+                />
+                <div className="absolute right-0 top-1/2 w-8 -translate-y-1/2 cursor-pointer">
+                  {isPasswordShown ? (
+                    <ViewIcon
+                      width={22}
+                      onClick={() => setIsPasswordShown(false)}
+                    />
+                  ) : (
+                    <ViewOffIcon
+                      width={22}
+                      onClick={() => setIsPasswordShown(true)}
+                    />
+                  )}
+                </div>
+              </div>
               {errors.password && (
                 <p className="text-sm text-red-700">
                   {errors.password.message}
@@ -113,7 +131,7 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
             <div className="my-5 text-center text-sm">
               Already have an account?{" "}
               <span
-                className="cursor-pointer font-semibold text-core-primary underline"
+                className="cursor-pointer font-semibold text-supporting-bg-light"
                 onClick={() => {
                   setOpenLoginForm(true);
                   console.log(openLoginForm);
@@ -132,10 +150,11 @@ export const SignUpForm = ({ closeModal }: { closeModal: () => void }) => {
                 Cancel
               </button>
               <button
-                className="primary-btn w-full font-semibold"
+                className="primary-btn !flex w-full items-center justify-center gap-2 font-semibold"
                 type="submit"
               >
-                Sign up
+                <div>Sign up</div>
+
                 {isLoading && <Loading />}
               </button>
             </div>

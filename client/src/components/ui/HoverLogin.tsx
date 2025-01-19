@@ -1,5 +1,10 @@
 import { Group, HoverCard } from "@mantine/core";
-import { Logout03Icon, ResetPasswordIcon, UserIcon } from "hugeicons-react";
+import {
+  Logout03Icon,
+  Profile02Icon,
+  ResetPasswordIcon,
+  UserIcon,
+} from "hugeicons-react";
 
 import { useLogoutMutation } from "../../services/auth/logout-mutation";
 
@@ -22,6 +27,10 @@ function HoverUser() {
           <UserIcon className="cursor-pointer" />
         </HoverCard.Target>
         <HoverCard.Dropdown style={{ color: "white" }}>
+          <div className="flex cursor-pointer items-center justify-between p-4 hover:bg-supporting-bg-light">
+            <button>Profile</button>
+            <Profile02Icon />
+          </div>
           <div className="flex cursor-pointer items-center justify-between p-4 hover:bg-supporting-bg-light">
             <button>Change Password</button>
             <ResetPasswordIcon />
