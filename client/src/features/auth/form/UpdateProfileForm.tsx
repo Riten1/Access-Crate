@@ -5,6 +5,9 @@ import { useForm } from "react-hook-form";
 
 import { Loading } from "../../../components/ui/Loading";
 import useGetCurrentAccountQuery from "../../../services/auth/get-current-account-query";
+import useUpdateProfileMutation, {
+  IUpdateProfileProps,
+} from "../../../services/auth/update-profile-mutation";
 import { getProfilePictureAlternative } from "../../../utils/pictureAlternative";
 
 export const UpdateProfileForm = ({
@@ -13,11 +16,18 @@ export const UpdateProfileForm = ({
   closeModal: () => void;
 }) => {
   const [image, setImage] = useState<File | string | null | undefined>(null);
-  const { data: profile, isLoading } = useGetCurrentAccountQuery();
+  const { data: profile } = useGetCurrentAccountQuery();
+  const { register, handleSubmit, reset } = useForm<IUpdateProfileProps>();
 
   useEffect(() => {
+    reset({
+      full_name: profile?.data.full_name,
+      email: profile?.data.email,
+      contact_info: profile?.data.contact_info || "",
+      address: profile?.data.address || "",
+    });
     setImage(profile?.data.profile_pic);
-  }, [profile?.data.profile_pic]);
+  }, [profile, reset, closeModal]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
@@ -26,17 +36,18 @@ export const UpdateProfileForm = ({
     setImage(e.target.files[0]);
   };
 
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      full_name: profile?.data.full_name,
-      email: profile?.data.email,
-      contact_info: profile?.data.contact_info,
-      address: profile?.data.address,
-    },
+  const { mutate: updateProfile, isLoading } = useUpdateProfileMutation({
+    closeModal,
+    reset,
   });
-
-  const handleUpdateProfile = (data: any) => {
-    
+  const handleUpdateProfile = (data: IUpdateProfileProps) => {
+    const formdata: any = new FormData();
+    formdata.append("full_name", data.full_name);
+    formdata.append("email", data.email);
+    formdata.append("contact_info", data.contact_info);
+    formdata.append("address", data.address);
+    formdata.append("profile_pic", image as File);
+    updateProfile(formdata);
   };
   return (
     <div className="flex flex-col gap-16">
@@ -132,7 +143,7 @@ export const UpdateProfileForm = ({
           </fieldset>
 
           <fieldset className="flex w-full flex-col gap-2">
-            <label htmlFor="phoneNumber" className="text-base font-semibold">
+            <label htmlFor="contact_info" className="text-base font-semibold">
               Phone Number <span className="font-semibold text-red-600">*</span>
             </label>
             <div className="relative">

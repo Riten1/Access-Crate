@@ -8,10 +8,10 @@ export interface IProfileResponse {
 export interface ProfileData {
   _id: string;
   full_name: string;
-  profile_pic: null;
+  profile_pic: string;
   email: string;
   role: string;
-  contact_info: null;
+  contact_info: string;
   address: null;
   createdAt: Date;
   updatedAt: Date;
