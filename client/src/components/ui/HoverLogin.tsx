@@ -9,17 +9,24 @@ import {
 } from "hugeicons-react";
 
 import { ChangePasswordModal } from "../../features/auth/modal/ChangePasswordModal";
+import { UpdateProfileModal } from "../../features/auth/modal/UpdateProfileModal";
 import { useLogoutMutation } from "../../services/auth/logout-mutation";
 
 function HoverUser() {
   const { mutate: logoutUser } = useLogoutMutation();
   const [openChangepasswordModal, setOpenChangepasswordModal] = useState(false);
+  const [openProfileModal, setOpenProfileModal] = useState(false);
+
   const handleLogout = () => {
     logoutUser();
   };
 
   const toggleChangepasswordModal = () => {
     setOpenChangepasswordModal(!openChangepasswordModal);
+  };
+
+  const toggleProfileModal = () => {
+    setOpenProfileModal(!openProfileModal);
   };
   return (
     <>
@@ -35,7 +42,10 @@ function HoverUser() {
             <UserIcon className="cursor-pointer" />
           </HoverCard.Target>
           <HoverCard.Dropdown style={{ color: "white" }}>
-            <div className="flex cursor-pointer items-center justify-between p-4 hover:bg-supporting-bg-light">
+            <div
+              onClick={toggleProfileModal}
+              className="flex cursor-pointer items-center justify-between p-4 hover:bg-supporting-bg-light"
+            >
               <button>Profile</button>
               <Profile02Icon />
             </div>
@@ -59,6 +69,10 @@ function HoverUser() {
       <ChangePasswordModal
         isOpen={openChangepasswordModal}
         closeModal={() => setOpenChangepasswordModal(false)}
+      />
+      <UpdateProfileModal
+        isOpen={openProfileModal}
+        closeModal={() => setOpenProfileModal(false)}
       />
     </>
   );
