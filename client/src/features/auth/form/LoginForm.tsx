@@ -109,7 +109,6 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
                 className="cursor-pointer font-semibold text-supporting-bg-light"
                 onClick={() => {
                   setOpenSignUpForm(true);
-                  console.log(openSignUpForm);
                 }}
               >
                 Sign Up
