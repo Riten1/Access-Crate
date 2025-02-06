@@ -26,7 +26,7 @@ const useResetPasswordMutation = ({
 }: {
   closeModal: () => void;
   reset: () => void;
-  setSearchParams: (data: object) => void;
+  setSearchParams: (data: any) => void;
 }) => {
   return useMutation({
     mutationFn: createNewPasswordApi,
