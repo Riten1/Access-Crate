@@ -117,31 +117,33 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
                   Sign Up
                 </span>
               </div>
-              <div className="flex justify-end">
-                <span
-                  className="cursor-pointer font-semibold"
-                  onClick={() => setForgotPassword(true)}
-                >
-                  Forgot Password?
-                </span>
-              </div>
 
-              <div className="flex justify-between gap-2">
-                <button
-                  className="secondary-btn w-full font-semibold"
-                  type="button"
-                  onClick={closeModal}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="primary-btn !flex w-full items-center justify-center gap-2 font-semibold"
-                  type="submit"
-                >
-                  <div>Login</div>
+              <div>
+                <div className="flex justify-end">
+                  <span
+                    className="cursor-pointer font-semibold text-supporting-bg-light"
+                    onClick={() => setForgotPassword(true)}
+                  >
+                    Forgot Password?
+                  </span>
+                </div>
+                <div className="flex justify-between gap-2 mt-4">
+                  <button
+                    className="secondary-btn w-full font-semibold"
+                    type="button"
+                    onClick={closeModal}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="primary-btn !flex w-full items-center justify-center gap-2 font-semibold"
+                    type="submit"
+                  >
+                    <div>Login</div>
 
-                  {isLoading && <Loading />}
-                </button>
+                    {isLoading && <Loading />}
+                  </button>
+                </div>
               </div>
             </form>
           </div>
