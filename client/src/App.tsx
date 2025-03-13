@@ -9,6 +9,7 @@ import { store } from "./redux/store";
 import Router from "./router/router";
 
 import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
 
 function App() {
   const queryClient = new QueryClient({

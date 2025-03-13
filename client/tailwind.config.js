@@ -11,6 +11,7 @@ export default {
         core: {
           primary: "#FFE500",
           secondary: "#BCBCBC",
+          timer: "#D9D9D9",
         },
         supporting: {
           bg: "#2D364C",
