@@ -1,10 +1,11 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { Carousel } from "@mantine/carousel";
+// import { Carousel } from "@mantine/carousel";
 import { Location01Icon, Ticket02Icon, Time02Icon } from "hugeicons-react";
+import { SwiperSlide } from "swiper/react";
 
 import bgImage from "../../assets/bgEvent.jpg";
-import CarouselView from "../../components/ui/Carousel";
+import Carousel from "../../components/ui/Carousel";
 import { Loading } from "../../components/ui/Loading";
 import useGetHeroUpcommingEventsQuery from "../../services/hero-section/get-upcomming-events";
 import { formatDate } from "../../utils/format-date";
@@ -44,19 +45,19 @@ const CountdownTimer = ({
       {timeLeft ? (
         <div className="flex items-center justify-center gap-4">
           <div>
-            <div className="bg-core-timer rounded-md px-4 py-1 text-supporting-bg-dark">
+            <div className="rounded-md bg-core-timer px-4 py-1 text-supporting-bg-dark">
               {timeLeft.days}
             </div>
             days
           </div>
           <div>
-            <div className="bg-core-timer rounded-md px-4 py-1 text-supporting-bg-dark">
+            <div className="rounded-md bg-core-timer px-4 py-1 text-supporting-bg-dark">
               {timeLeft.hours}
             </div>
             hours
           </div>
           <div>
-            <div className="bg-core-timer rounded-md px-4 py-1 text-supporting-bg-dark">
+            <div className="rounded-md bg-core-timer px-4 py-1 text-supporting-bg-dark">
               {timeLeft.minutes}
             </div>
             minutes
@@ -88,21 +89,21 @@ export const Hero = () => {
         </div>
       ) : upcommingEvents && upcommingEvents.data.length > 0 ? (
         <div className="relative z-20 flex w-full items-center justify-center">
-          <CarouselView>
+          <Carousel>
             {upcommingEvents.data.map((event) => (
-              <Carousel.Slide
+              <SwiperSlide
                 key={event._id}
                 className="flex w-full justify-center"
               >
-                <div className="flex w-full items-center justify-center gap-8 text-center lg:text-left">
+                <div className="flex flex-col-reverse items-center justify-center gap-8 text-center md:flex-row lg:flex-row lg:text-left">
                   <div className="flex flex-col items-center lg:items-start">
-                    <h1 className="text-center text-3xl font-semibold text-core-primary lg:text-5xl">
+                    <h1 className="text-center text-2xl md:text-3xl font-semibold text-core-primary lg:text-5xl">
                       {event.name}
                     </h1>
                     <div className="flex w-full flex-col items-center justify-center">
-                      <div className="mt-16 flex gap-2">
+                      <div className="lg:mt-16 md:mt-16 mt-10 flex gap-2">
                         <Time02Icon className="h-6 w-6 text-core-primary" />
-                        <p className="w-full text-center text-sm font-medium text-white md:text-base lg:text-base">
+                        <p className="w-full text-center text-base font-medium text-white md:text-base lg:text-base">
                           {formatDate(event.date)}
                         </p>
                       </div>
@@ -127,7 +128,7 @@ export const Hero = () => {
                     </div>
                     <CountdownTimer eventDate={event.date} />
                   </div>
-                  <div className="w-full max-w-[400px] lg:max-w-[500px]">
+                  <div className="flex w-full max-w-[300px] items-center justify-center lg:max-w-[500px]">
                     <img
                       src={event.event_pic}
                       className="w-full shadow-md"
@@ -135,9 +136,9 @@ export const Hero = () => {
                     />
                   </div>
                 </div>
-              </Carousel.Slide>
+              </SwiperSlide>
             ))}
-          </CarouselView>
+          </Carousel>
         </div>
       ) : (
         <div className="absolute inset-0 z-20 flex items-center justify-center">

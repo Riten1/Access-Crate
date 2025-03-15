@@ -33,3 +33,21 @@ input[type="number"]::-webkit-outer-spin-button {
     @apply rounded-xl border-2 border-core-primary bg-none px-6 py-3 font-semibold text-core-primary;
   }
 }
+
+/* Customize Swiper Navigation Arrows with Tailwind */
+.swiper-button-next,
+.swiper-button-prev {
+  @apply scale-125 text-core-timer transition-all duration-200;
+}
+
+/* Change arrow size */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  @apply text-4xl;
+}
+
+/* Hover effect */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  @apply text-supporting-bg-light;
+}
