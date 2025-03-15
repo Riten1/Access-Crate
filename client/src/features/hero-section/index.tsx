@@ -97,11 +97,11 @@ export const Hero = () => {
               >
                 <div className="flex flex-col-reverse items-center justify-center gap-8 text-center md:flex-row lg:flex-row lg:text-left">
                   <div className="flex flex-col items-center lg:items-start">
-                    <h1 className="text-center text-2xl md:text-3xl font-semibold text-core-primary lg:text-5xl">
+                    <h1 className="text-center text-2xl font-semibold text-core-primary md:text-3xl lg:text-5xl">
                       {event.name}
                     </h1>
                     <div className="flex w-full flex-col items-center justify-center">
-                      <div className="lg:mt-16 md:mt-16 mt-10 flex gap-2">
+                      <div className="mt-10 flex gap-2 md:mt-16 lg:mt-16">
                         <Time02Icon className="h-6 w-6 text-core-primary" />
                         <p className="w-full text-center text-base font-medium text-white md:text-base lg:text-base">
                           {formatDate(event.date)}

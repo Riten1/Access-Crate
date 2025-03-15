@@ -14,9 +14,9 @@ export default {
           timer: "#D9D9D9",
         },
         supporting: {
-          bg: "#2D364C",
+          bg: "#262D40",
           "bg-light": "#525A6C",
-          "bg-dark": "#242C3D",
+          "bg-dark": "#1D232F",
         },
       },
     },
