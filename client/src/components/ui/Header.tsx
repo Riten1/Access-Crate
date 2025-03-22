@@ -31,7 +31,7 @@ const Header = (props: IHeader) => {
           {title}
         </p>
         {description && (
-          <p className={cn("text-md text-neutral-600", descriptionClassName)}>
+          <p className={cn("text-md text-neutral-300 text-sm mt-2", descriptionClassName)}>
             {description}
           </p>
         )}

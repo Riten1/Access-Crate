@@ -1,3 +1,4 @@
+import { EventDetailsPage } from "../../pages/EventDetails";
 import Home from "../../pages/Home";
 
 export interface IRoute {
@@ -17,5 +18,10 @@ export const userRoutes: IRoute[] = [
     id: "login",
     path: "/login",
     element: Home,
+  },
+  {
+    id: "event",
+    path: "/event/:id",
+    element: EventDetailsPage,
   },
 ];

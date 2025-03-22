@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 
 import { MantineProvider } from "@mantine/core";
-import { ReactLenis } from "@studio-freight/react-lenis";
+// import { ReactLenis } from "@studio-freight/react-lenis";
 import { Toaster } from "react-hot-toast";
 
 import { store } from "./redux/store";
@@ -20,18 +20,18 @@ function App() {
     },
   });
 
-  const LenisScrollLayout = ({ children }: { children: React.ReactNode }) => {
-    return <ReactLenis root>{children}</ReactLenis>;
-  };
+  // const LenisScrollLayout = ({ children }: { children: React.ReactNode }) => {
+  //   return <ReactLenis root>{children}</ReactLenis>;
+  // };
 
   return (
     <>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <MantineProvider withGlobalClasses={false}>
-            <LenisScrollLayout>
-              <Router />
-            </LenisScrollLayout>
+            {/* <LenisScrollLayout> */}
+            <Router />
+            {/* </LenisScrollLayout> */}
           </MantineProvider>
         </QueryClientProvider>
       </Provider>

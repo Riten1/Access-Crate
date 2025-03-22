@@ -3,7 +3,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-export const formatDate = (date: Date) => {
+export const formatDate = (date: Date | undefined) => {
   return dayjs(date).format("MMM DD, YYYY");
 };
 
