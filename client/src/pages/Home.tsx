@@ -1,8 +1,9 @@
 // import JohnProfile from "../assets/jon2.png";
 // import JohnCover from "../assets/jonCover.jpg";
 import { AboutUs } from "../features/AboutUs";
+import { FeaturedEvents } from "../features/featured-events";
 import { Hero } from "../features/hero-section";
-import { FeaturedEvents } from "../features/upcomming-events";
+import { TopOrganizers } from "../features/TopOrganizers";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Hero />
       <AboutUs />
       <FeaturedEvents />
+      <TopOrganizers />
     </>
   );
 };

@@ -27,9 +27,13 @@ export const EventCard = ({ event }: { event: FeaturedEventsData }) => {
           </div>
         </div>
         <div className="flex justify-end">
-          <p className="text-base font-semibold text-white">
-            NPR. {event.ticketRange.lowest} - NPR. {event.ticketRange.highest}
-          </p>
+          {event.isEntryFree ? (
+            <p className="text-base font-semibold text-white">Free Entry</p>
+          ) : (
+            <p className="text-base font-semibold text-white">
+              NPR. {event.ticketRange.lowest} - NPR. {event.ticketRange.highest}
+            </p>
+          )}
         </div>
       </div>
     </div>

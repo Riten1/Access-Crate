@@ -18,7 +18,9 @@ export const AboutUs = () => {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="w-full md:w-3/4">
+          <div className="flex justify-end">
+
+          <div className="w-full md:w-3/4 ">
             <p className="text-sm font-semibold text-white">Mission</p>
             <p className="mt-2 text-sm font-normal text-core-secondary">
               At AccessCrate, our mission is to revolutionize the event
@@ -28,6 +30,7 @@ export const AboutUs = () => {
               transparent, and efficient, ensuring a smooth ticketing process
               for all.
             </p>
+          </div>
           </div>
         </div>
 

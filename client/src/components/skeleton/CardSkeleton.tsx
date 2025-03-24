@@ -4,9 +4,9 @@ const SkeletonCards = () => {
       {[1, 2, 3, 4].map((index) => (
         <div
           key={index}
-          className="flex flex-col gap-4 rounded-lg bg-gray-800 p-4"
+          className="flex h-[400px] w-[240px] flex-col gap-6 rounded-lg bg-gray-800 p-4"
         >
-          <div className="h-40 w-full rounded-lg bg-gray-700"></div>
+          <div className="w- h-40 rounded-lg bg-gray-700"></div>
 
           <div className="space-y-3">
             <div className="h-4 w-20 rounded bg-gray-700"></div>
