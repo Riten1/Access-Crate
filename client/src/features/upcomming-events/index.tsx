@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ArrowRight02Icon } from "hugeicons-react";
 
-import SkeletonCards from "../../components/CardSkeleton";
+import SkeletonCards from "../../components/skeleton/CardSkeleton";
 import { EventCard } from "../../components/EventCard";
 import Header from "../../components/ui/Header";
 import useFeaturedEventsQuery from "../../services/events/get-events-query";

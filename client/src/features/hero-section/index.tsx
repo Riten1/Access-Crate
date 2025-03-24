@@ -5,8 +5,8 @@ import { Location01Icon, Ticket02Icon, Time02Icon } from "hugeicons-react";
 import { SwiperSlide } from "swiper/react";
 
 import bgImage from "../../assets/bgEvent.jpg";
+import HeroSectionSkeleton from "../../components/skeleton/HeroSectionSkeleton";
 import Carousel from "../../components/ui/Carousel";
-import { Loading } from "../../components/ui/Loading";
 import useGetHeroUpcommingEventsQuery from "../../services/hero-section/get-upcomming-events";
 import { formatDate } from "../../utils/format-date";
 
@@ -79,13 +79,15 @@ export const Hero = () => {
     <div className="relative flex min-h-screen w-full items-center justify-center">
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/100 via-black/50 to-transparent"></div>
       <img
-        className="absolute inset-0 z-0 h-full w-full object-cover blur-[2.5px]"
+        className="absolute inset-0 z-0 h-full w-full object-cover blur-[2.5px] filter"
         src={bgImage}
         alt="Cover"
       />
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
       {isLoading ? (
         <div className="absolute inset-0 z-20 flex items-center justify-center">
-          <Loading />
+          <HeroSectionSkeleton />
         </div>
       ) : upcommingEvents && upcommingEvents.data.length > 0 ? (
         <div className="relative z-20 flex w-full items-center justify-center">
