@@ -12,7 +12,7 @@ export const FeaturedEvents = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-supporting-bg-dark p-12 md:px-24 md:pb-8 md:pt-16 lg:px-40 lg:pb-8 lg:pt-20">
+    <div className="bg-supporting-bg-dark p-12 md:px-24 md:pb-16 md:pt-16 lg:px-40 lg:pb-20 lg:pt-20">
       <div className="flex items-center justify-between">
         <Header
           title="Featured Events"
