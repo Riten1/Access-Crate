@@ -35,7 +35,7 @@ export interface OrganizerData {
 export interface IGetOrganizerEventsResponse {
   success: boolean;
   message: string;
-  data: Events[];
+  data: FeaturedEventsData[];
   statusCode: number;
 }
 

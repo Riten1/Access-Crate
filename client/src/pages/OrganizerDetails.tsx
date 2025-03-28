@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import {
@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 
 import { Badge } from "../components/ui/Badge";
 import HorizontalTab from "../components/ui/HorizontalTab";
-import { OrganizerAbout } from "../features/organizer-details/OrganizerAbout";
+import { PastEvents } from "../features/organizer-details/PastEvents";
 import cn from "../lib/classname";
 import useGetOrganizerDetailsQuery from "../services/organizers/get-organizer-details.query";
 import useGetOrganizerEventsQuery from "../services/organizers/get-organizer-event.query";
@@ -23,12 +23,13 @@ export const OrganizerDetails = () => {
     id,
   });
 
-  const [activeTab, setActiveTab] = useState("About");
+  const [activeTab, setActiveTab] = useState("Past Events");
 
   const { data: events } = useGetOrganizerEventsQuery({
     id,
-    eventType: "upcoming",
+    eventType: activeTab === "Past Events" ? "past" : "upcoming",
   });
+  useEffect(() => {}, []);
 
   const handleCopyUrl = async () => {
     await navigator.clipboard.writeText(window.location.href);
@@ -88,7 +89,7 @@ export const OrganizerDetails = () => {
       <div className="flex justify-between gap-8">
         <div className="flex flex-col gap-8">
           <div className="flex gap-2 rounded-xl bg-supporting-bg p-2">
-            {["About", "Past Events", "Upcoming Events"].map((tab, index) => (
+            {["Past Events", "Upcoming Events"].map((tab, index) => (
               <div
                 key={index}
                 onClick={() => setActiveTab(tab)}
@@ -104,7 +105,10 @@ export const OrganizerDetails = () => {
             ))}
           </div>
 
-          {/* {activeTab === "About" && (
+          {events?.data.map((event) => (
+            <PastEvents title={activeTab} event={event} />
+          ))}
+          {/* ) : (
             <OrganizerAbout
               organizer={organizer?.data}
               upcommingEvents={events?.data.length}
