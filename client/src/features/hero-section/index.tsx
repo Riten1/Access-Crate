@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // import { Carousel } from "@mantine/carousel";
 import { Location01Icon, Ticket02Icon, Time02Icon } from "hugeicons-react";
@@ -74,6 +75,7 @@ export default CountdownTimer;
 
 export const Hero = () => {
   const { data: upcommingEvents, isLoading } = useGetHeroUpcommingEventsQuery();
+  const navigate = useNavigate();
 
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center">
@@ -124,7 +126,10 @@ export const Hero = () => {
                       </div>
                     </div>
                     <div className="flex w-full justify-center">
-                      <button className="primary-btn mt-4 !w-[200px] items-center justify-center font-semibold">
+                      <button
+                        onClick={() => navigate(`/event/${event._id}`)}
+                        className="primary-btn mt-4 !w-[200px] items-center justify-center font-semibold"
+                      >
                         Buy Tickets
                       </button>
                     </div>

@@ -1,10 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 import { OrganizerData } from "../@types/organizers";
 import { getProfilePictureAlternative } from "../utils/pictureAlternative";
 import { Badge } from "./ui/Badge";
 
 export const OrganizerCard = ({ organizer }: { organizer: OrganizerData }) => {
+  const navigate = useNavigate();
   return (
-    <div className="flex w-full cursor-pointer flex-col items-center justify-center gap-6 rounded-lg bg-supporting-bg-dark p-6">
+    <div
+      onClick={() => navigate(`/organizer/${organizer._id}`)}
+      className="flex w-full cursor-pointer flex-col items-center justify-center gap-6 rounded-lg bg-supporting-bg-dark p-6"
+    >
       <div className="flex h-24 w-24 justify-center overflow-hidden rounded-full bg-gray-700">
         {organizer.profile_pic ? (
           <img
