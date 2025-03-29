@@ -1,4 +1,6 @@
+import { AboutUs } from "../../pages/AboutUs";
 import { EventDetailsPage } from "../../pages/EventDetails";
+import { Events } from "../../pages/Events";
 import Home from "../../pages/Home";
 import { OrganizerDetails } from "../../pages/OrganizerDetails";
 
@@ -29,5 +31,15 @@ export const userRoutes: IRoute[] = [
     id: "organizer",
     path: "/organizer/:id",
     element: OrganizerDetails,
+  },
+  {
+    id: "events",
+    path: "/events",
+    element: Events,
+  },
+  {
+    id: "about-us",
+    path: "/about-us",
+    element: AboutUs,
   },
 ];

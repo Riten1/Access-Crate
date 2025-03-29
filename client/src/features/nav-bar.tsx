@@ -8,10 +8,10 @@ import cn from "classnames";
 import { ShoppingBag03Icon } from "hugeicons-react";
 
 import HoverUser from "../components/ui/HoverLogin";
+import ToggleUser from "../components/ui/ToggleUser";
 import { RootState } from "../redux/store";
 import { LoginModal } from "./auth/modal/LoginModal";
 import { SignUpModal } from "./auth/modal/SignUpModal";
-import ToggleUser from "../components/ui/ToggleUser";
 
 export const NavBar = ({ className }: { className?: string }) => {
   const { pathname } = useLocation();
@@ -31,17 +31,21 @@ export const NavBar = ({ className }: { className?: string }) => {
         )}
       >
         <div className="flex gap-8">
-          <Link to={"/about-us"}>
+          <Link to="/events">
             <div
               className={cn(
                 "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
                 {
-                  "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                    pathname === "/events",
+                  "text-core-primary": location.pathname === "/events",
                 }
               )}
             >
               Events
+              <div className="flex items-center justify-center">
+                {pathname === "/events" && (
+                  <div className="absolute top-20 h-0.5 w-5 rounded-lg bg-core-primary"></div>
+                )}
+              </div>
             </div>
           </Link>
           <Link to={"/tickets"}>
@@ -80,17 +84,21 @@ export const NavBar = ({ className }: { className?: string }) => {
         </Link>
 
         <div className="flex items-center gap-8 align-middle">
-          <Link to={"/organizers"}>
+          <Link to={"/about-us"}>
             <div
               className={cn(
                 "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
                 {
-                  "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                    pathname === "/about-us",
+                  "text-core-primary": pathname === "/about-us",
                 }
               )}
             >
               About Us
+              <div className="flex items-center justify-center">
+                {pathname === "/about-us" && (
+                  <div className="absolute top-20 h-0.5 w-5 rounded-lg bg-core-primary"></div>
+                )}
+              </div>
             </div>
           </Link>
 
@@ -175,10 +183,10 @@ export const NavBar = ({ className }: { className?: string }) => {
             </>
           ) : (
             <>
-              <div className="flex justify-center font-regular cursor-pointer bg-core-primary p-4 text-lg font-semibold text-supporting-bg-dark duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105">
+              <div className="font-regular flex cursor-pointer justify-center bg-core-primary p-4 text-lg font-semibold text-supporting-bg-dark duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105">
                 <ShoppingBag03Icon />
               </div>
-              <div className="font-regular cursor-pointer bg-core-primary p-4 text-lg font-semibold text-supporting-bg-dark duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105 flex justify-center">
+              <div className="font-regular flex cursor-pointer justify-center bg-core-primary p-4 text-lg font-semibold text-supporting-bg-dark duration-150 ease-out hover:w-full hover:-translate-x-6 hover:scale-x-105">
                 <ToggleUser />
               </div>
             </>
