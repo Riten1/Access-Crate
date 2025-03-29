@@ -8,6 +8,28 @@
     font-family: "Poppins", sans-serif;
     scroll-behavior: smooth;
   }
+
+  .hidden-scrollbar::-webkit-scrollbar,
+  .drawer-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bar::-webkit-scrollbar,
+  .scroll-bar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .bar::-webkit-scrollbar-track,
+  .scroll-bar::-webkit-scrollbar-track {
+    border-radius: 50px;
+  }
+
+  .bar::-webkit-scrollbar-thumb,
+  .scroll-bar::-webkit-scrollbar-thumb {
+    background: #808080;
+    border-radius: 50px;
+  }
 }
 
 input[type="number"]::-webkit-inner-spin-button,

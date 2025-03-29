@@ -12,7 +12,7 @@ const GetOrganizerDetailsApi = async (
 
 const useGetOrganizerDetailsQuery = ({ id }: { id: string | undefined }) => {
   return useQuery({
-    queryKey: ["organizerDetails", id],
+    // queryKey: ["organizerDetails"],
     queryFn: () => GetOrganizerDetailsApi(id),
   });
 };

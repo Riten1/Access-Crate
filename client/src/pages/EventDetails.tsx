@@ -3,7 +3,7 @@ import {
   //useRef
   useState,
 } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import {
   Button,
@@ -26,6 +26,7 @@ import { formatDate } from "../utils/format-date";
 export const EventDetailsPage = () => {
   const { id } = useParams();
   const [event, setEvent] = useState<EventDetails>();
+  const navigate = useNavigate();
   const {
     data: eventDetails,
     // isLoading
@@ -78,7 +79,10 @@ export const EventDetailsPage = () => {
             <div className="rounded-full bg-core-timer px-4 font-semibold">
               {event?.category.name}
             </div>
-            <p className="text-core-secondary">
+            <p
+              className="text-core-secondary hover:cursor-pointer hover:underline"
+              onClick={() => navigate(`/organizer/${event?.organizer._id}`)}
+            >
               Organized by {event?.organizer.organizer_name}
             </p>
           </div>

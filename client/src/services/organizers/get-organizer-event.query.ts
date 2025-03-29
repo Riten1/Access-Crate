@@ -6,13 +6,16 @@ import http from "../../lib/http";
 const GetOrganizerEventsApi = async ({
   id,
   eventType,
+  page,
 }: {
   id: string | undefined;
   eventType: string;
+  page: number;
 }): Promise<IGetOrganizerEventsResponse> => {
   const response = await http.get(`/organizer-events/${id}`, {
     params: {
       eventType,
+      page, // Include page in the request parameters
     },
   });
   return response.data;
@@ -21,13 +24,15 @@ const GetOrganizerEventsApi = async ({
 const useGetOrganizerEventsQuery = ({
   id,
   eventType,
+  page,
 }: {
   id: string | undefined;
   eventType: string;
+  page: number;
 }) => {
   return useQuery({
-    queryKey: ["organizerEvents", id, eventType],
-    queryFn: () => GetOrganizerEventsApi({ id, eventType }),
+    queryKey: ["organizerEvents", id, eventType, page], // Include page in the query key
+    queryFn: () => GetOrganizerEventsApi({ id, eventType, page }),
   });
 };
 

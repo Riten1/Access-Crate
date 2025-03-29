@@ -1,42 +1,39 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Calendar01Icon, Location01Icon } from "hugeicons-react";
+import { Calendar02Icon, Location01Icon } from "hugeicons-react";
 
 import { FeaturedEventsData } from "../../@types/events";
-import { Events } from "../../@types/organizers";
 import { formatDate } from "../../utils/format-date";
 
 export const PastEvents = ({
-  title,
   event,
 }: {
-  title: string;
   event: FeaturedEventsData | undefined;
 }) => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col gap-8">
-      <p className="text-2xl font-semibold text-white">{title}</p>
-
+    <div className="flex w-[100%] flex-col gap-8 rounded-lg bg-supporting-bg">
       <div className="flex flex-col gap-4">
         <div>
-          <div className="flex gap-4">
-            <div className="w-[20%]">
+          <div className="flex">
+            <div className="h-full w-[30%]">
               <img src={event?.event_pic} className="object-cover" alt="" />
             </div>
 
-            <div className="flex w-full flex-col gap-4">
-              <div>
-                <p>{event?.name}</p>
+            <div className="flex w-full flex-col gap-4 p-4 text-white">
+              <div className="flex flex-col gap-2">
+                <p className="text-xl font-semibold">{event?.name}</p>
                 <div className="flex flex-col gap-2">
                   <div className="flex gap-2">
-                    <Calendar01Icon />
-                    <p>{formatDate(event?.date)}</p>
+                    <Calendar02Icon className="text-core-primary" />
+                    <p className="text-neutral-300">
+                      {formatDate(event?.date)}
+                    </p>
                   </div>
                   <div className="flex gap-2">
-                    <Location01Icon />
-                    <p>{event?.venue}</p>
+                    <Location01Icon className="text-core-primary" />
+                    <p className="text-neutral-300">{event?.venue}</p>
                   </div>
                 </div>
               </div>

@@ -35,11 +35,19 @@ export interface OrganizerData {
 export interface IGetOrganizerEventsResponse {
   success: boolean;
   message: string;
-  data: FeaturedEventsData[];
+  data: EventsData;
   statusCode: number;
 }
 
-export interface Events {
+export interface EventsData {
+  totalEvents: number;
+  currentPage: number;
+  totalPages: number;
+  limit: number;
+  events: Event[];
+}
+
+export interface Event {
   _id: string;
   name: string;
   event_pic: string;
@@ -54,5 +62,38 @@ export interface Events {
   eventType: EventType;
   __v: number;
   isTicketsAvailable: boolean;
-  tickets: string[];
+  tickets: Ticket[];
+  ticketRange: TicketRange;
+}
+
+export interface TicketRange {
+  lowest: number;
+  highest: number;
+}
+
+export interface Ticket {
+  _id: string;
+  ticketType: string;
+  isActive: boolean;
+  sales_start_date: Date;
+  sales_end_date: Date;
+  price: number;
+  quantity: number;
+  sold_count: number;
+}
+
+export interface FeaturedEventsData {
+  _id: string;
+  name: string;
+  event_pic: string;
+  description: string;
+  date: Date;
+  venue: string;
+  isActive: boolean;
+  interested: number;
+  isEntryFree: boolean;
+  eventType: string;
+  isTicketsAvailable: boolean;
+  tickets: Ticket[];
+  ticketRange: TicketRange;
 }
