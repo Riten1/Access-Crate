@@ -6,7 +6,7 @@ import { formatDate } from "../utils/format-date";
 export const EventCard = ({ event }: { event: FeaturedEventsData }) => {
   return (
     <div className="cursor-pointer rounded-lg bg-supporting-bg p-6">
-      <div className="flex h-[400px] w-[240px] flex-col justify-between">
+      <div className="flex h-[450px] w-full flex-col justify-between">
         <div className="flex flex-col">
           <img
             className="soverflow-hidden h-1/2 object-cover"
