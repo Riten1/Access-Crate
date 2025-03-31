@@ -6,8 +6,11 @@ import {
   ArrowRight01Icon,
   Contact01Icon,
   Copy01Icon,
+  Facebook02Icon,
+  InstagramIcon,
   Mail01Icon,
   UserIcon,
+  YoutubeIcon,
 } from "hugeicons-react";
 import toast from "react-hot-toast";
 
@@ -178,6 +181,46 @@ export const OrganizerDetails = () => {
                 </div>
               </div>
             </div>
+
+            {organizer?.data.facebook ||
+            organizer?.data.instagram ||
+            organizer?.data.youtube ? (
+              <div>
+                <hr className="my-8 rounded-2xl border-core-secondary" />
+
+                <h3 className="mb-4 text-xl font-semibold text-core-primary">
+                  Social Media
+                </h3>
+
+                <div className="flex items-center gap-4">
+                  {organizer?.data?.facebook && (
+                    <div
+                      onClick={() => window.open(organizer?.data?.facebook)}
+                      className="flex cursor-pointer items-center justify-center rounded-full bg-supporting-bg-dark p-2"
+                    >
+                      <Facebook02Icon className="text-core-primary" />
+                    </div>
+                  )}
+                  {organizer?.data?.instagram && (
+                    <div
+                      onClick={() => window.open(organizer?.data?.instagram)}
+                      className="flex cursor-pointer items-center justify-center rounded-full bg-supporting-bg-dark p-2"
+                    >
+                      <InstagramIcon className="text-core-primary" />
+                    </div>
+                  )}
+                  {organizer?.data?.youtube && (
+                    <div
+                      onClick={() => window.open(organizer?.data?.youtube)}
+                      className="flex cursor-pointer items-center justify-center rounded-full bg-supporting-bg-dark p-2"
+                    >
+                      <YoutubeIcon className="text-core-primary" />
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : null}
+            {/* <p className="text-white">{organizer?.data.description}</p> */}
           </div>
         </div>
       </div>

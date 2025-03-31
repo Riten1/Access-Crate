@@ -30,6 +30,9 @@ export interface OrganizerData {
   owner_name: string;
   total_events: number;
   categories: string[];
+  facebook: string;
+  instagram: string;
+  youtube: string;
 }
 
 export interface IGetOrganizerEventsResponse {
