@@ -3,6 +3,7 @@ import { EventDetailsPage } from "../../pages/EventDetails";
 import { Events } from "../../pages/Events";
 import Home from "../../pages/Home";
 import { OrganizerDetails } from "../../pages/OrganizerDetails";
+import { Organizers } from "../../pages/Organizers";
 
 export interface IRoute {
   id: string;
@@ -41,5 +42,10 @@ export const userRoutes: IRoute[] = [
     id: "about-us",
     path: "/about-us",
     element: AboutUs,
+  },
+  {
+    id: "organizers",
+    path: "/organizers",
+    element: Organizers,
   },
 ];

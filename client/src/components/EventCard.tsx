@@ -9,7 +9,7 @@ export const EventCard = ({ event }: { event: FeaturedEventsData }) => {
       <div className="flex h-[450px] w-full flex-col justify-between">
         <div className="flex flex-col">
           <img
-            className="soverflow-hidden h-1/2 object-cover"
+            className="soverflow-hidden h-[200px] object-cover"
             src={event.event_pic}
           />
           <div className="mt-4 flex flex-col gap-4">

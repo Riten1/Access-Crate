@@ -62,17 +62,21 @@ export const NavBar = ({ className }: { className?: string }) => {
             </div>
           </Link>
 
-          <Link to={"/events"}>
+          <Link to={"/organizers"}>
             <div
               className={cn(
                 "font-regular text-sm duration-200 hover:text-core-primary md:text-lg lg:text-xl",
                 {
-                  "rounded-lg bg-core-primary/[8%] !text-core-primary":
-                    pathname === "/organizers",
+                  "text-core-primary": location.pathname === "/organizers",
                 }
               )}
             >
               Organizers
+              <div className="flex items-center justify-center">
+                {pathname === "/organizers" && (
+                  <div className="absolute top-20 h-0.5 w-5 rounded-lg bg-core-primary"></div>
+                )}
+              </div>
             </div>
           </Link>
         </div>
