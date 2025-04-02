@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
-import { OrganizerData } from "../@types/organizers";
+import { OrganizerData, Organizers } from "../@types/organizers";
 import { getProfilePictureAlternative } from "../utils/pictureAlternative";
 import { Badge } from "./ui/Badge";
 
-export const OrganizerCard = ({ organizer }: { organizer: OrganizerData }) => {
+export const OrganizerCard = ({
+  organizer,
+}: {
+  organizer: OrganizerData | Organizers;
+}) => {
   const navigate = useNavigate();
   return (
     <div

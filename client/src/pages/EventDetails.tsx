@@ -67,7 +67,7 @@ export const EventDetailsPage = () => {
   }, 0);
 
   return (
-    <div className="flex w-full gap-7 bg-supporting-bg-dark px-16 py-28">
+    <div className="flex w-full gap-7 bg-supporting-bg-dark px-4 py-28 sm:px-8 md:px-16 md:py-32 ">
       <div className="flex w-[70%] flex-col gap-4">
         <img
           className="h-[70%] rounded-lg object-cover"

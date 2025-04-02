@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { OrganizerCard } from "../components/OrganizerCard";
 import Header from "../components/ui/Header";
 import useGetTop2OrganizersQuery from "../services/organizers/get-top2-organizers.query";
@@ -6,6 +7,7 @@ import useGetTop3OrganizersQuery from "../services/organizers/get-top3-organizer
 export const TopOrganizers = () => {
   const { data: top2organizers } = useGetTop2OrganizersQuery();
   const { data: top3organizers } = useGetTop3OrganizersQuery();
+  const navigate = useNavigate()
 
   return (
     <div className="flex flex-col gap-12 bg-supporting-bg p-6 md:p-12 lg:px-40 lg:py-20">
@@ -32,9 +34,9 @@ export const TopOrganizers = () => {
         </div>
       </div>
 
-      {/* View All Button */}
+     
       <div className="flex justify-center">
-        <button className="primary-btn font-semibold">
+        <button className="primary-btn font-semibold" onClick={() => navigate("/organizers")}>
           View all organizers
         </button>
       </div>

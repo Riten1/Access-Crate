@@ -9,7 +9,7 @@ const GetEventsApi = async ({
   page,
 }: {
   search?: string;
-  category?: string;
+  category?: string | undefined | null;
   page?: number;
 }): Promise<IGetEventsResponse> => {
   const response = await http.get("/events", {
@@ -24,7 +24,7 @@ const GetEventsApi = async ({
 
 const useGetEventsQuery = (
   search: string | undefined,
-  category: string | undefined,
+  category: string | undefined | null,
   page: number
 ) => {
   return useQuery({

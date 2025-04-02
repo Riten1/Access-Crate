@@ -42,8 +42,8 @@ export const OrganizerDetails = () => {
   };
 
   return (
-    <div className="flex w-full flex-col gap-16 bg-supporting-bg-dark px-16 py-40">
-      <div className="flex items-center justify-between">
+<div className="flex w-full flex-col gap-16 bg-supporting-bg-dark px-4 py-28 sm:px-8 md:px-16 md:py-32 min-h-screen">
+<div className="flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="flex h-36 w-36 justify-center overflow-hidden rounded-full bg-gray-700">
             {organizer?.data.profile_pic ? (

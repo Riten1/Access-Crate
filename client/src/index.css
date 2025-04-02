@@ -7,7 +7,12 @@
   * {
     font-family: "Poppins", sans-serif;
     scroll-behavior: smooth;
+    
+    /* background-color: #1d232f; */
   }
+body{
+  
+} 
 
   .hidden-scrollbar::-webkit-scrollbar,
   .drawer-scrollbar::-webkit-scrollbar {

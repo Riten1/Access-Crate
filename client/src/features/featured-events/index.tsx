@@ -20,7 +20,7 @@ export const FeaturedEvents = () => {
           className="text-center text-white sm:text-left"
         />
         <div
-          onClick={() => navigate("/featured-events")}
+          onClick={() => navigate("/events")}
           className="flex cursor-pointer items-center gap-2 text-sm text-core-primary hover:underline sm:text-base"
         >
           <p>View all featured events</p>

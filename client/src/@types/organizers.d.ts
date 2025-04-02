@@ -100,3 +100,22 @@ export interface FeaturedEventsData {
   tickets: Ticket[];
   ticketRange: TicketRange;
 }
+
+export interface IGetOrganizersResponse {
+  success: boolean;
+  message: string;
+  totalPages: number;
+  currentPage: number;
+  totalResults: number;
+  limit: number;
+  data: Organizers[];
+}
+
+export interface Organizers {
+  _id: string;
+  organizer_name: string;
+  profile_pic: string;
+  email: string;
+  total_events: number;
+  categories: string[];
+}

@@ -3,6 +3,7 @@
 import { AboutUs } from "../features/AboutUs";
 import { FeaturedEvents } from "../features/featured-events";
 import { Hero } from "../features/hero-section";
+import { OurPartners } from "../features/OurPartners";
 import { TopOrganizers } from "../features/TopOrganizers";
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
       <AboutUs />
       <FeaturedEvents />
       <TopOrganizers />
+      <OurPartners />
     </>
   );
 };
