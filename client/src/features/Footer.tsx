@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import emailjs from "@emailjs/browser";
 import {
   CopyrightIcon,
   Facebook02Icon,
@@ -8,8 +9,38 @@ import {
   StarIcon,
   YoutubeIcon,
 } from "hugeicons-react";
+import toast from "react-hot-toast";
 
+import { Loading } from "../components/ui/Loading";
+
+const serviceId = import.meta.env.VITE_EMAIL_JS_SERVICE_KEY;
+const publicId = import.meta.env.VITE_EMAIL_JS_PUBLIC_KEY;
+const templateId = import.meta.env.VITE_EMAIL_JS_TEMPLATE_KEY;
 export const Footer = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [loading, setLoading] = useState(false);
+  const handleSendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    if (!form.current) return;
+
+    emailjs
+      .sendForm(serviceId, templateId, form.current, {
+        publicKey: publicId,
+      })
+      .then(
+        () => {
+          toast.success("Request sent successfully. We will get back to you.");
+          form.current?.reset();
+        },
+        (error) => {
+          toast.error("Failed to send request: " + error.text);
+        }
+      )
+      .finally(() => setLoading(false));
+  };
+
   const navigate = useNavigate();
   return (
     <div className="flex w-full gap-20 bg-supporting-bg p-6 md:p-12 lg:px-40 lg:py-20">
@@ -24,13 +55,28 @@ export const Footer = () => {
           <p className="text-2xl font-medium text-white">
             Want to be an organizer?
           </p>
-          <div className="mt-5 flex gap-4">
-            <input
-              type="text"
-              placeholder="Enter your email"
-              className="w-full rounded-lg border border-core-primary bg-transparent px-4 text-white focus:outline-none"
-            />
-            <button className="primary-btn">Submit</button>
+          <div className="flex gap-4">
+            <form
+              ref={form}
+              onSubmit={handleSendEmail}
+              className="mt-5 flex w-full gap-4"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                className="w-full rounded-lg border border-core-primary bg-transparent px-4 text-white focus:outline-none"
+              />
+              <button
+                disabled={loading}
+                type="submit"
+                className={`primary-btn flex items-center ${loading && "opacity-80"}`}
+              >
+                <p>Submit</p>
+                <p className="ml-2">{loading && <Loading />}</p>
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -73,7 +119,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 w-1/2">
+        <div className="flex w-1/2 flex-col gap-2">
           <div className="flex flex-wrap justify-between">
             <p
               className="cursor-pointer text-core-secondary hover:text-core-primary"
