@@ -1,4 +1,5 @@
 import { AboutUs } from "../../pages/AboutUs";
+import { Checkout } from "../../pages/Checkout";
 import { EventDetailsPage } from "../../pages/EventDetails";
 import { Events } from "../../pages/Events";
 import Home from "../../pages/Home";
@@ -47,5 +48,10 @@ export const userRoutes: IRoute[] = [
     id: "organizers",
     path: "/organizers",
     element: Organizers,
+  },
+  {
+    id: "checkout",
+    path: "/event/checkout",
+    element: Checkout,
   },
 ];
