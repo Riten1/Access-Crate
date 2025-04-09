@@ -11,6 +11,7 @@ import {
   NumberInput,
   // NumberInputHandlers
 } from "@mantine/core";
+import axios from "axios";
 import {
   Add01Icon,
   Calendar02Icon,
@@ -19,14 +20,18 @@ import {
 } from "hugeicons-react";
 
 import { EventDetails } from "../@types/events";
+import http from "../lib/http";
 // import Header from "../components/ui/Header";
 import useEventDetailsQuery from "../services/events/get-event-details-query";
+import useEsewaPaymentMutation from "../services/payment/use-initiate-esewa-payment.mutation";
+import { getToken } from "../utils/auth-storage";
 import { formatDate } from "../utils/format-date";
 
 export const EventDetailsPage = () => {
   const { id } = useParams();
   const [event, setEvent] = useState<EventDetails>();
   const navigate = useNavigate();
+  const [isProcessing, setIsProcessing] = useState(false);
   const {
     data: eventDetails,
     // isLoading
@@ -66,6 +71,32 @@ export const EventDetailsPage = () => {
     return sum + (ticketCounts[ticket.ticketType] || 0) * ticket.price;
   }, 0);
 
+  const { mutate: payment } = useEsewaPaymentMutation();
+  const handleBuyTickets = async () => {
+    if (!event || !id || totalTickets === 0) return;
+
+    setIsProcessing(true);
+
+    try {
+      const selectedTickets = event.tickets
+        .filter((ticket) => ticketCounts[ticket.ticketType] > 0)
+        .map((ticket) => ({
+          ticketId: ticket._id,
+          quantity: ticketCounts[ticket.ticketType],
+          price: ticket.price,
+        }));
+
+      // Remove the duplicate http.post call
+      payment({
+        eventId: id, // Make sure this is not null
+        tickets: selectedTickets,
+        totalAmount: totalAmount || 0, // Provide fallback
+      });
+    } catch (error) {
+      console.error("Payment initiation failed:", error);
+      setIsProcessing(false);
+    }
+  };
   return (
     <div className="flex w-full gap-7 bg-supporting-bg-dark px-4 py-28 sm:px-8 md:px-16 md:py-32">
       <div className="flex w-[70%] flex-col gap-4">
@@ -220,9 +251,12 @@ export const EventDetailsPage = () => {
         {/* Buy Tickets Button */}
         <button
           className="primary-btn font-semibold"
-          disabled={totalTickets === 0}
+          disabled={totalTickets === 0 || isProcessing}
+          onClick={handleBuyTickets}
         >
-          Buy Tickets {totalTickets > 0 ? `(NPR. ${totalAmount})` : ""}
+          {isProcessing
+            ? "Processing..."
+            : `Pay with eSewa (NPR. ${totalAmount})`}
         </button>
 
         <hr />
