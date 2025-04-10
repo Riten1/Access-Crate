@@ -5,6 +5,8 @@ import { Events } from "../../pages/Events";
 import Home from "../../pages/Home";
 import { OrganizerDetails } from "../../pages/OrganizerDetails";
 import { Organizers } from "../../pages/Organizers";
+import PaymentFailure from "../../pages/PaymentFailure";
+import { PaymentSuccess } from "../../pages/PaymentSuccess";
 
 export interface IRoute {
   id: string;
@@ -53,5 +55,15 @@ export const userRoutes: IRoute[] = [
     id: "checkout",
     path: "/event/checkout",
     element: Checkout,
+  },
+  {
+    id: "payment-success",
+    path: "/payment/success",
+    element: PaymentSuccess,
+  },
+  {
+    id: "payment-failure",
+    path: "/payment/failure",
+    element: PaymentFailure,
   },
 ];

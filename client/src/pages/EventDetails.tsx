@@ -11,7 +11,6 @@ import {
   NumberInput,
   // NumberInputHandlers
 } from "@mantine/core";
-import axios from "axios";
 import {
   Add01Icon,
   Calendar02Icon,
@@ -20,11 +19,9 @@ import {
 } from "hugeicons-react";
 
 import { EventDetails } from "../@types/events";
-import http from "../lib/http";
 // import Header from "../components/ui/Header";
 import useEventDetailsQuery from "../services/events/get-event-details-query";
 import useEsewaPaymentMutation from "../services/payment/use-initiate-esewa-payment.mutation";
-import { getToken } from "../utils/auth-storage";
 import { formatDate } from "../utils/format-date";
 
 export const EventDetailsPage = () => {
@@ -71,11 +68,9 @@ export const EventDetailsPage = () => {
     return sum + (ticketCounts[ticket.ticketType] || 0) * ticket.price;
   }, 0);
 
-  const { mutate: payment } = useEsewaPaymentMutation();
+  const { mutate: initiatePayment } = useEsewaPaymentMutation();
   const handleBuyTickets = async () => {
     if (!event || !id || totalTickets === 0) return;
-
-    setIsProcessing(true);
 
     try {
       const selectedTickets = event.tickets
@@ -86,15 +81,13 @@ export const EventDetailsPage = () => {
           price: ticket.price,
         }));
 
-      // Remove the duplicate http.post call
-      payment({
-        eventId: id, // Make sure this is not null
+      initiatePayment({
+        eventId: id,
         tickets: selectedTickets,
-        totalAmount: totalAmount || 0, // Provide fallback
+        totalAmount: totalAmount || 0,
       });
     } catch (error) {
       console.error("Payment initiation failed:", error);
-      setIsProcessing(false);
     }
   };
   return (
