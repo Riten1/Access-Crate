@@ -1,3 +1,4 @@
+import PaymentVerifier from "../../components/PaymentVerifier";
 import { AboutUs } from "../../pages/AboutUs";
 import { Checkout } from "../../pages/Checkout";
 import { EventDetailsPage } from "../../pages/EventDetails";
@@ -65,5 +66,10 @@ export const userRoutes: IRoute[] = [
     id: "payment-failure",
     path: "/payment/failure",
     element: PaymentFailure,
+  },
+  {
+    id: "payment-verify",
+    path: "/payment/verify",
+    element: PaymentVerifier,
   },
 ];

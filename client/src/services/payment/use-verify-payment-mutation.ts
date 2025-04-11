@@ -1,49 +1,44 @@
+// src/hooks/useVerifyPayment.ts
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
+import axios from "axios";
 import toast from "react-hot-toast";
 
-import { ApiError } from "../../@types/apiError";
 import http from "../../lib/http";
 
-// src/api/paymentApi.ts
-// src/api/paymentApi.ts
-interface IVerifyPaymentParams {
-  pid: string;
-  oid?: string;
-  amt?: string;
-  refId?: string;
-}
-
-const verifyEsewaPaymentApi = async (params: IVerifyPaymentParams) => {
-  const response = await http.get(`/esewa/verify`, {
-    params: {
-      pid: params.pid,
-      oid: params.oid,
-      amt: params.amt,
-      refId: params.refId,
-    },
-  });
-  return response.data;
-};
-
-// Update useVerifyEsewaPaymentMutation
-export const useVerifyEsewaPaymentMutation = () => {
+export const useVerifyEsewaPayment = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: verifyEsewaPaymentApi,
+    mutationFn: async (params: {
+      pid: string;
+      oid?: string;
+      amt?: string;
+      status?: string;
+      data?: string;
+    }) => {
+      // Clean the pid if it contains query params
+      const cleanPid = params.pid.split("?")[0];
+
+      const response = await http.post("/esewa/verify", {
+        pid: cleanPid,
+        oid: params.oid,
+        amt: params.amt,
+        status: params.status,
+        data: params.data,
+      });
+      return response.data;
+    },
     onSuccess: (data) => {
-      if (data?.success && data.redirectUrl) {
-        window.location.href = data.redirectUrl;
+      if (data.success) {
+        navigate(`/payment/success?pid=${data.paymentId}`);
       } else {
-        toast.error("Payment verification incomplete");
-        navigate("/");
+        navigate(`/payment/failure?error=${data.message}`);
       }
     },
-    onError: (error: ApiError) => {
-      toast.error(error?.response?.data?.message || "Verification failed");
-      navigate("/");
+    onError: (error) => {
+      navigate("/payment/failure?error=verification_failed");
     },
   });
 };

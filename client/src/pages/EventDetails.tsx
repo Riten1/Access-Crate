@@ -21,8 +21,20 @@ import {
 import { EventDetails } from "../@types/events";
 // import Header from "../components/ui/Header";
 import useEventDetailsQuery from "../services/events/get-event-details-query";
-import useEsewaPaymentMutation from "../services/payment/use-initiate-esewa-payment.mutation";
+import { useEsewaPaymentMutation } from "../services/payment/use-initiate-esewa-payment.mutation";
 import { formatDate } from "../utils/format-date";
+
+interface PaymentData {
+  eventId: string;
+  tickets: Array<{
+    ticketId: string;
+    quantity: number;
+    price: number;
+  }>;
+  totalAmount: number;
+  successUrl: string;
+  failureUrl: string;
+}
 
 export const EventDetailsPage = () => {
   const { id } = useParams();
@@ -68,7 +80,8 @@ export const EventDetailsPage = () => {
     return sum + (ticketCounts[ticket.ticketType] || 0) * ticket.price;
   }, 0);
 
-  const { mutate: initiatePayment } = useEsewaPaymentMutation();
+  const { mutate: initiatePayment, isPending } = useEsewaPaymentMutation();
+
   const handleBuyTickets = async () => {
     if (!event || !id || totalTickets === 0) return;
 
@@ -82,6 +95,16 @@ export const EventDetailsPage = () => {
         }));
 
       initiatePayment({
+        eventId: id,
+        tickets: selectedTickets,
+        totalAmount: totalAmount || 0,
+        successUrl: `${window.location.origin}/payment/verify`,
+        failureUrl: `${window.location.origin}/payment/verify`,
+      });
+
+      // In your handleBuyTickets function
+      console.log("Selected Tickets:", selectedTickets);
+      console.log("Payment Data:", {
         eventId: id,
         tickets: selectedTickets,
         totalAmount: totalAmount || 0,
